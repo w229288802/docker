@@ -1,0 +1,28 @@
+version: '3'
+services:
+  controller:
+    image: cframe
+    container_name: controller
+    network_mode: 'host'
+    environment:
+      - ETCD_HOST=127.0.0.1
+      - ETCD_PORT=2379
+      - APISERVER_PORT=12345
+      - APISERVER_LOG=apiservice.log
+      - CONTROLLER_LOG=controllor.log
+      - LISTEN_PORT=58422
+    ports:
+      - '58422:58422'
+      - '12345:12345'
+  edge:
+    image: cframe
+    container_name: edge
+    environment:
+      - CONTROLLER_HOST=apscode.top
+      - LISTEN_PORT=58422
+      - EDGE_NAME=aliyun
+    network_mode: 'host'
+    ports:
+      - '58423:58423'
+    depends_on:
+      - controller
