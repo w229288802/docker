@@ -1,0 +1,6 @@
+vendor
+bin
+log
+*.log
+dist
+webui
