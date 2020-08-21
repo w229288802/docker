@@ -1,0 +1,15 @@
+version: '3'
+services:
+  main:
+    image: registry
+    container_name: registry
+    ports:
+      - "5000:5000"
+    deploy:
+      placement:
+        constraints: [node.hostname == qcloud]
+    networks:
+      - network
+networks:
+  network:
+    driver: overlay

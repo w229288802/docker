@@ -1,1 +1,0 @@
-bat2exe /source:"%CD%\bat\" /target:"%CD%\bat\" /y /s

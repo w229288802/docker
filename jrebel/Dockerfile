@@ -1,4 +1,4 @@
-FROM java:8
+FROM openjdk:8
 COPY JrebelBrainsLicenseServerforJava-1.0-SNAPSHOT-jar-with-dependencies.jar /opt/
 ##java -jar JrebelBrainsLicenseServerforJava-1.0-SNAPSHOT-jar-with-dependencies.jar -p 1008 &
 ##http://jrebel.yanjiayu.cn:9001/

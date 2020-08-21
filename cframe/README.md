@@ -1,3 +1,12 @@
+# controller 开放端口
+0.0.0.0/0 UDP:58423
+0.0.0.0/0 TCP:58422
+0.0.0.0/0 TCP:12345 apiserver
+127.0.0.1 TCP:2379 etcd
+
+# edge 开放端口
+0.0.0.0/0 UDP:58423
+
 export NODE1=0.0.0.0
 docker run -d \
   -p 2379:2379 \
@@ -16,7 +25,7 @@ export EDGE_NAME=aliyun &&
 export EDGE_IP=47.98.175.80 &&
 export EDGE_PORT=58423 &&
 export EDGE_CIDR=172.16.0.0/16 &&
-export CONTROLLER_HOST=apescode.top &&
+export CONTROLLER_HOST=119.45.191.75 &&
 export LISTEN_PORT=58422 &&
 export APISERVER_PORT=12345 &&
 cd ~/cframe/opt &&chmod +x run.sh &&./run.sh
@@ -25,7 +34,7 @@ export EDGE_NAME=qcloud &&
 export EDGE_IP=119.45.191.75 &&
 export EDGE_PORT=58423 &&
 export EDGE_CIDR=10.206.0.0/16 &&
-export CONTROLLER_HOST=apescode.top &&
+export CONTROLLER_HOST=119.45.191.75 &&
 export LISTEN_PORT=58422 &&
 export APISERVER_PORT=12345 &&
 cd ~/cframe/opt &&chmod +x run.sh &&./run.sh
@@ -35,7 +44,7 @@ export EDGE_NAME=ctyun &&
 export EDGE_IP=117.88.44.56 &&
 export EDGE_PORT=58423 &&
 export EDGE_CIDR=172.31.0.0/16 &&
-export CONTROLLER_HOST=apescode.top &&
+export CONTROLLER_HOST=119.45.191.75 &&
 export LISTEN_PORT=58422 &&
 export APISERVER_PORT=12345 &&
 cd ~/cframe/opt &&chmod +x run.sh &&./run.sh
@@ -54,7 +63,7 @@ cd  ~/cframe/edge && nohup ./edge -c config.toml &
 curl "http://127.0.0.1:12345/api-service/v1/edge/add" -X "POST" -d '{"name": "aliyun", "hostaddr": "47.98.175.80:58423", "cidr": "172.16.0.0/16"}' -H "Content-Type: application/json"
 curl "http://127.0.0.1:12345/api-service/v1/edge/add" -X "POST" -d '{"name": "qcloud", "hostaddr": "119.45.191.75:58423", "cidr": "10.206.0.0/16"}' -H "Content-Type: application/json"
 curl "http://127.0.0.1:12345/api-service/v1/edge/add" -X "POST" -d '{"name": "ctyun", "hostaddr": "117.88.44.56:58423", "cidr": "172.31.0.0/16"}' -H "Content-Type: application/json"
-curl "http://127.0.0.1:12345/api-service/v1/edge/list"
+curl "http://119.45.191.75:12345/api-service/v1/edge/list"
 
 
 47.98.175.80(公)

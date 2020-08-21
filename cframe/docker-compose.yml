@@ -14,15 +14,16 @@ services:
     ports:
       - '58422:58422'
       - '12345:12345'
-  edge:
-    image: cframe
-    container_name: edge
-    environment:
-      - CONTROLLER_HOST=apscode.top
-      - LISTEN_PORT=58422
-      - EDGE_NAME=aliyun
-    network_mode: 'host'
-    ports:
-      - '58423:58423'
-    depends_on:
-      - controller
+    restart: 'always'
+  #edge:
+  #  image: cframe
+  #  container_name: edge
+  #  environment:
+  #    - CONTROLLER_HOST=119.45.191.75
+  #    - LISTEN_PORT=58422
+  #    - EDGE_NAME=aliyun
+  #  network_mode: 'host'
+  #  ports:
+  #    - '58423:58423'
+  #  depends_on:
+  #    - controller

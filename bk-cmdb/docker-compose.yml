@@ -1,0 +1,15 @@
+version: '3'
+services:
+  main:
+    image: ccr.ccs.tencentyun.com/bk.io/cmdb-standalone
+    container_name:  bk-cmdb
+    ports:
+      - "80:8090"
+    deploy:
+      placement:
+        constraints: [node.hostname == qcloud]
+    networks:
+      - network
+networks:
+  network:
+    driver: overlay
