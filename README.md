@@ -1,6 +1,14 @@
 #window
 https://download.docker.com/win/static/stable/x86_64/docker-17.09.0-ce.zip
 
+#Docker常见端口#
+
+2375：未加密的docker socket,远程root无密码访问主机
+2376：tls加密套接字,很可能这是您的CI服务器4243端口作为https 443端口的修改
+2377：群集模式套接字,适用于群集管理器,不适用于docker客户端
+5000：docker注册服务
+4789和7946：覆盖网络
+
 #Docker开启Remote API 访问 2375端口
 vim /usr/lib/systemd/system/docker.service
 #找到 ExecStart，在最后面添加 -H tcp://0.0.0.0:2375，如下图所示
