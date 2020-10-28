@@ -1,0 +1,13 @@
+version: '3'
+services:
+  main:
+    image: gitlab/gitlab-ce:13.3.1-ce.0
+    container_name: gitlab
+    ports:
+      - "443:443"
+      - "80:80"
+      - "222:22"
+    volumes:
+      - "/home/gitlab/config:/etc/gitlab"
+      - "/home/gitlab/logs:/var/log/gitlab"
+      - "/home/gitlab/data:/var/opt/gitlab"
