@@ -1,0 +1,13 @@
+version: 3
+services:
+  nacos1:
+    hostname: nacos1
+    container_name: nacos1
+    image: centos:7
+
+    env_file:
+      - env/nacos-embedded.env
+    restart: always
+    deploy:
+      placement:
+        constraints: [node.hostname == aliyun]
