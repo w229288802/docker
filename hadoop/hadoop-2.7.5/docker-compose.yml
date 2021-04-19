@@ -1,0 +1,9 @@
+version: '3'
+services:
+  hadoop-master:
+    image: hadoop:v2.7.5
+    volumes:
+      - tools:/bin
+    entrypoint: /docker-entrypoint.sh
+volumes:
+  tools:
