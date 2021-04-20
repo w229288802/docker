@@ -2,25 +2,34 @@ version: '3'
 services:
   master:
     image: hadoop:v2.7.5
+    environment:
+      - JAVA_HOME=/usr
     volumes:
       - hadoop-opt:/opt
+    privileged: true
+    hostname: master
     networks:
       - hadoop
-    privileged: true
+    depends_on:
+      - slave1
   slave1:
     image: hadoop:v2.7.5
+    environment:
+      - JAVA_HOME=/usr
     volumes:
       - hadoop-opt:/opt
+    privileged: true
+    hostname: slave1
     networks:
       - hadoop
-    privileged: true
-    depends_on:
-      - master
 networks:
   hadoop: {
     external: true
   }
 volumes:
+  hadoop-rsa: {
+    external: true
+  }
   tools: {
     external: true
   }
