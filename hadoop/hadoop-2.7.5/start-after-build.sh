@@ -28,5 +28,5 @@ fi
 echo -e "${S}building image to ${FILE_DIR}${E}"
 docker build --rm -t hadoop:v2.7.5 ${FILE_DIR}/build-support
 echo -e "${S}starting hadoop docker-compose${E}"
-docker-compose up --remove-orphans
+docker-compose -p hadoop up --remove-orphans
 #docker run --rm --name hadoop -it -v ${FILE_DIR}:/opt/hadoop hadoop:v2.7.5 bash

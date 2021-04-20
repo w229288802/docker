@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 services:
   master:
     image: hadoop:v2.7.5
@@ -27,12 +27,6 @@ networks:
     external: true
   }
 volumes:
-  hadoop-rsa: {
-    external: true
-  }
-  tools: {
-    external: true
-  }
   hadoop-opt: {
     external: true
   }
