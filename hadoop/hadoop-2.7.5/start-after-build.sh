@@ -16,12 +16,14 @@ tar -xvf hadoop-2.7.5.tar.gz -C ${FILE_DIR}/
 fi
 
 
-if [[ ! -d ${DOCKER_VOLUME_DIR}/hadoop-opt ]]; then
+if [[ ! -d ${DOCKER_VOLUME_DIR}/hadoop_opt ]]; then
 echo -e "${S}creating volume to ${FILE_DIR}${E}"
-docker volume create hadoop-opt
-cp  -R ${FILE_DIR}/hadoop-2.7.5 ${DOCKER_VOLUME_DIR}/hadoop-opt/_data/
-cp  -R ${FILE_DIR}/etc ${DOCKER_VOLUME_DIR}/hadoop-opt/_data/hadoop-2.7.5/
+docker volume create hadoop_opt
+cp  -R ${FILE_DIR}/hadoop-2.7.5 ${DOCKER_VOLUME_DIR}/hadoop_opt/_data/
 fi
+
+echo -e "${S}\cp  -rf ${FILE_DIR}/build-support/etc/ ${DOCKER_VOLUME_DIR}/hadoop_opt/_data/hadoop-2.7.5/${E}"
+cp  -rf ${FILE_DIR}/build-support/etc/ ${DOCKER_VOLUME_DIR}/hadoop_opt/_data/hadoop-2.7.5/
 
 
 
