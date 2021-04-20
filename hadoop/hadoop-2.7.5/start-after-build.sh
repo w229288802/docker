@@ -2,33 +2,41 @@
 S='\033[0;30m[debug] '
 E='\033[0m'
 
+#配置变量
 DOCKER_VOLUME_DIR=/var/lib/docker/volumes
+HADOOP_HOME_VOLUME=hadoop_opt
+HADOOP_VERSION=2.7.5
+HADOOP_DIR=hadoop-${HADOOP_VERSION}
 FILE_DIR=$(cd $(dirname $0); pwd)
 
-if [[ ! -f ${FILE_DIR}/hadoop-2.7.5.tar.gz ]];then
-echo -e "${S}downloading hadoop to ${FILE_DIR}${E}"
-wget http://archive.apache.org/dist/hadoop/core/hadoop-2.7.5/hadoop-2.7.5.tar.gz -P ${FILE_DIR}/
+# 下载hadoop包
+if [[ ! -f ${FILE_DIR}/${HADOOP_DIR}.tar.gz ]];then
+echo -e "${S}wget http://archive.apache.org/dist/hadoop/core/${HADOOP_DIR}/${HADOOP_DIR}.tar.gz -P ${FILE_DIR}/${E}"
+wget http://archive.apache.org/dist/hadoop/core/${HADOOP_DIR}/${HADOOP_DIR}.tar.gz -P ${FILE_DIR}/
 fi
 
-if [[ ! -d ${FILE_DIR}/hadoop-2.7.5 ]];then
-echo -e "${S}expressing hadoop to ${FILE_DIR}${E}"
-tar -xvf hadoop-2.7.5.tar.gz -C ${FILE_DIR}/
+# 解压hadoop包
+if [[ ! -d ${FILE_DIR}/${HADOOP_DIR} ]];then
+echo -e "tar -xvf ${HADOOP_DIR}.tar.gz -C ${FILE_DIR}/${E}"
+tar -xvf ${HADOOP_DIR}.tar.gz -C ${FILE_DIR}/
 fi
 
-
-if [[ ! -d ${DOCKER_VOLUME_DIR}/hadoop_opt ]]; then
-echo -e "${S}creating volume to ${FILE_DIR}${E}"
-docker volume create hadoop_opt
-cp  -R ${FILE_DIR}/hadoop-2.7.5 ${DOCKER_VOLUME_DIR}/hadoop_opt/_data/
+# 创建hadoop主数据卷
+if [[ ! -d ${DOCKER_VOLUME_DIR}/${HADOOP_HOME_VOLUME} ]]; then
+echo -e "${S}docker volume create ${HADOOP_HOME_VOLUME}${E}"
+docker volume create ${HADOOP_HOME_VOLUME}
+echo -e "cp -r ${FILE_DIR}/${HADOOP_DIR} ${DOCKER_VOLUME_DIR}/${HADOOP_HOME_VOLUME}/_data/${E}"
+cp -R ${FILE_DIR}/${HADOOP_DIR} ${DOCKER_VOLUME_DIR}/${HADOOP_HOME_VOLUME}/_data/
 fi
 
-echo -e "${S}\cp  -rf ${FILE_DIR}/build-support/etc/ ${DOCKER_VOLUME_DIR}/hadoop_opt/_data/hadoop-2.7.5/${E}"
-cp  -rf ${FILE_DIR}/build-support/etc/ ${DOCKER_VOLUME_DIR}/hadoop_opt/_data/hadoop-2.7.5/
+# 复制配置到主数据卷
+echo -e "${S}\\\cp -rf ${FILE_DIR}/build-support/etc/ ${DOCKER_VOLUME_DIR}/${HADOOP_HOME_VOLUME}/_data/${HADOOP_DIR}/${E}"
+\cp -rf ${FILE_DIR}/build-support/etc/ ${DOCKER_VOLUME_DIR}/${HADOOP_HOME_VOLUME}/_data/${HADOOP_DIR}/
 
+# 构建hadoop镜像
+echo -e "${S}docker build --rm -t hadoop:v${HADOOP_VERSION} ${FILE_DIR}/build-support${E}"
+docker build --rm -t hadoop:v${HADOOP_VERSION} ${FILE_DIR}/build-support
 
-
-echo -e "${S}building image to ${FILE_DIR}${E}"
-docker build --rm -t hadoop:v2.7.5 ${FILE_DIR}/build-support
-echo -e "${S}starting hadoop docker-compose${E}"
+# 启动hadoop镜像，orphans：孤儿
+echo -e "${S}docker-compose -p hadoop up --remove-orphans${E}"
 docker-compose -p hadoop up --remove-orphans
-#docker run --rm --name hadoop -it -v ${FILE_DIR}:/opt/hadoop hadoop:v2.7.5 bash
