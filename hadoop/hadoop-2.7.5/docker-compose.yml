@@ -28,7 +28,7 @@ services:
       - JAVA_HOME=/usr
     volumes:
       - hadoop_opt:/opt
-      - slavel_data:/data
+      - slave1_data:/data
     privileged: true
     hostname: slave1
     networks:
@@ -42,4 +42,4 @@ volumes:
     external: true
   }
   master_data:
-  slavel_data:
+  slave1_data:
