@@ -28,7 +28,7 @@ fi
 
 # 开启hadoop
 if [[ "${HOSTNAME}" == "master" ]]; then
-echo -e "${S}sed -i "s|\${JAVA_HOME}|${JAVA_HOME}|" ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh${E}"
+echo -e "${S}sed -i "s|\\\${JAVA_HOME}|${JAVA_HOME}|" ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh${E}"
 sed -i "s|\${JAVA_HOME}|${JAVA_HOME}|" ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
 ${HADOOP_HOME}/sbin/start-all.sh
 # 注意！！！如果是slave, 需等待 master退出,不然会找不到slave，也可以用sleep等待
