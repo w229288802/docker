@@ -11,7 +11,7 @@ services:
     hostname: master
     ports:
       - 8088:8088
-      - 50075:50075
+      - 50070:50070
     networks:
       hadoop:
           ipv4_address: 172.18.0.2

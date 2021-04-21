@@ -9,8 +9,8 @@ for pid_path in `ls ${FILE_DIR}/*.pid 2>/dev/null` ; do
 pid_name=${pid_path##*/}
 #获取pid (最后一次出现.pid前的字符串)
 pid=${pid_name%%.pid}
-#ps -ef | grep -E "\s${pid}\s"
-echo $pid
+echo -E "the follows are killing "
+echo `ps -ef | grep -E "\s${pid}\s" | awk '{print $9}'`
 ps -ef | grep -E "\s${pid}\s" | awk '{print $2}' | xargs kill -9 2&>/dev/null
 rm -f ${pid_path}
 done
