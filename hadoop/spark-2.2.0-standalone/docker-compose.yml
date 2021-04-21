@@ -1,0 +1,42 @@
+version: '3.8'
+services:
+  master:
+    image: hadoop:v2.7.5
+    environment:
+      - JAVA_HOME=/usr
+    volumes:
+      - hadoop_opt:/opt
+      - master_data:/data
+    privileged: true
+    hostname: master
+    ports:
+      - 6066:6066
+      - 7077:7077
+      - 8080:8080
+      - 9000:9000
+      - 19888:19888
+    networks:
+      - hadoop
+    depends_on:
+      - slave1
+  slave1:
+    image: hadoop:v2.7.5
+    environment:
+      - JAVA_HOME=/usr
+    volumes:
+      - hadoop_opt:/opt
+      - slave1_data:/data
+    privileged: true
+    hostname: slave1
+    networks:
+      - hadoop
+networks:
+  hadoop: {
+    external: true
+  }
+volumes:
+  hadoop_opt: {
+    external: true
+  }
+  master_data:
+  slave1_data:
