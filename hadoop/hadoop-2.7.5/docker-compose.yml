@@ -6,7 +6,7 @@ services:
       - JAVA_HOME=/usr
     volumes:
       - hadoop_opt:/opt
-      - master_data:/data
+      - hadoop_master_data:/data
     privileged: true
     hostname: master
     ports:
@@ -23,7 +23,7 @@ services:
       - JAVA_HOME=/usr
     volumes:
       - hadoop_opt:/opt
-      - slave1_data:/data
+      - hadoop_slave1_data:/data
     privileged: true
     hostname: slave1
     networks:
@@ -37,5 +37,5 @@ volumes:
   hadoop_opt: {
     external: true
   }
-  master_data:
-  slave1_data:
+  hadoop_master_data:
+  hadoop_slave1_data:

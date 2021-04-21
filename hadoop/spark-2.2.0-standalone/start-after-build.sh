@@ -1,10 +1,6 @@
 #!/bin/bash
 BLACK_COLOR='\033[0;30m'
 NO_COLOR='\033[0m'
-printf_and_run() {
-printf "${BLACK_COLOR}$1 ${NO_COLOR}\n"
-bash -c "$1"
-}
 
 #配置变量
 JAVA_HOME=/usr
@@ -17,16 +13,21 @@ SPARK_MASTER_HOST=spark-master
 SPARK_MASTER_PORT=7077
 FILE_DIR=$(cd $(dirname $0); pwd)
 
+${FILE_DIR}/stop-after-build.sh
+
+println_and_run() { printf "${BLACK_COLOR}$1 ${NO_COLOR}\n"; bash -c "$1";}
+println(){ printf "${BLACK_COLOR}$1 ${NO_COLOR}\n";}
+
 
 # 下载spark包
 if [[ ! -f ${FILE_DIR}/${SPARK_DIR}-bin-${HADOOP_VERSION}.tgz ]];then
-printf_and_run "wget https://archive.apache.org/dist/spark/${SPARK_DIR}/${SPARK_DIR}-bin-${HADOOP_VERSION}.tgz -P ${FILE_DIR}/"
+println_and_run "wget https://archive.apache.org/dist/spark/${SPARK_DIR}/${SPARK_DIR}-bin-${HADOOP_VERSION}.tgz -P ${FILE_DIR}/"
 fi
 
 # 解压spark包
 if [[ ! -d ${FILE_DIR}/${SPARK_DIR} ]];then
-printf_and_run "tar -xvf ${SPARK_DIR}-bin-${HADOOP_VERSION}.tgz -C ${FILE_DIR}/${SPARK_DIR}/"
-printf_and_run "mv ${SPARK_DIR}-bin-${HADOOP_VERSION} ${SPARK_DIR}"
+println_and_run "tar -xvf ${SPARK_DIR}-bin-${HADOOP_VERSION}.tgz -C ${FILE_DIR}/${SPARK_DIR}/"
+println_and_run "mv ${SPARK_DIR}-bin-${HADOOP_VERSION} ${SPARK_DIR}"
 fi
 
 #配置master地址
@@ -41,14 +42,14 @@ echo "slave1" >>  ${SPARK_DIR}/conf/slaves
 
 # 复制spark包
 if [[ ! -d ${DOCKER_VOLUME_DIR}/${HADOOP_HOME_VOLUME} ]]; then
-printf_and_run "cp -r ${FILE_DIR}/${SPARK_DIR} ${DOCKER_VOLUME_DIR}/${SPARK_HOME_VOLUME}/_data/"
+println_and_run "cp -r ${FILE_DIR}/${SPARK_DIR} ${DOCKER_VOLUME_DIR}/${SPARK_HOME_VOLUME}/_data/"
 fi
 
 # 复制配置到主数据卷
-#printf_and_run "\\cp -rf ${FILE_DIR}/build-support/conf/ ${DOCKER_VOLUME_DIR}/${SPARK_HOME_VOLUME}/_data/${SPARK_DIR}/"
+#println_and_run "\\cp -rf ${FILE_DIR}/build-support/conf/ ${DOCKER_VOLUME_DIR}/${SPARK_HOME_VOLUME}/_data/${SPARK_DIR}/"
 
 # 构建hadoop镜像
-printf_and_run "docker build --rm -t spark:v${SPARK_VERSION} ${FILE_DIR}/build-support"
+println_and_run "docker build --rm -t spark:v${SPARK_VERSION} ${FILE_DIR}/build-support"
 
 # 启动hadoop镜像，orphans：孤儿
-printf_and_run "docker-compose -p spark up --remove-orphans"
+println_and_run "docker-compose -p spark up --remove-orphans"
