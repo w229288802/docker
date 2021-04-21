@@ -6,16 +6,6 @@ printf "${BLACK_COLOR}$1 ${NO_COLOR}\n"
 bash -c "$1"
 }
 
-#删除以住进程
-for pid_path in $(cd $(dirname $0); pwd)/*.pid ; do
-#获取pid文件名(最后一次出现/后的字符串)
-pid_name=${pid_path##*/}
-#获取pid (最后一次出现.pid前的字符串)
-pid=${pid_name%%.pid}
-ps -ef | grep -E "\s${pid}\s" | awk '{print $2}' | xargs kill -9 2&>/dev/null
-done
-echo > "$$.pid"
-
 #配置变量
 DOCKER_VOLUME_DIR=/var/lib/docker/volumes
 HADOOP_HOME_VOLUME=hadoop_opt
