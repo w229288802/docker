@@ -23,8 +23,10 @@ done
 #获取父进程`ps -ef|awk '$2=='$psid'{print $3}'`,获取当前进程$$
 pid=`ps -ef|awk '$2=='$$'{print $3}'`
 if [[ `ps -ef|awk '$2=='${pid}'{print $8}'`  != "-bash" ]]; then
+# 进程名
+pName=`ps -aux | grep -E "\s${pid}\s" | awk '{print $12}'`
 # 进程名打印到进程pid文件
-echo `ps -aux | grep -E "\s${pid}\s" | awk '{print $12}'`> ${FILE_PATH}/`ps -ef|awk '$2=='$$'{print $3}'`.pid
+echo ${pName##*/}> ${FILE_PATH}/`ps -ef|awk '$2=='$$'{print $3}'`.pid
 fi
 
 docker-compose -f ${FILE_PATH}/docker-compose.yml -p ${APP_NAME} down
