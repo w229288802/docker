@@ -49,6 +49,11 @@ echo "spark-slave1" >  ${FILE_PATH}/build-support/conf/slaves
 echo "spark.eventLog.enabled  true" >> ${FILE_PATH}/build-support/conf/spark-defaults.conf
 echo "spark.eventLog.dir      hdfs://${HADOOP_MASTER_HOST}:${HADOOP_DFS_PORT}/spark_log" >> ${FILE_PATH}/build-support/conf/spark-defaults.conf
 echo "spark.eventLog.compress true" >> ${FILE_PATH}/build-support/conf/spark-defaults.conf
+#将以下内容复制到`spark-env.sh`的末尾, 配置 HistoryServer 启动参数, 使得 HistoryServer 在启动的时候读取 HDFS 中写入的 Spark 日志
+echo "export SPARK_HISTORY_OPTS='-Dspark.history.ui.port=4000 -Dspark.history.retainedApplications=3\
+ -Dspark.history.fs.logDirectory=hdfs://${HADOOP_MASTER_HOST}:${HADOOP_DFS_PORT}/spark_log'">> ${FILE_PATH}/build-support/conf/spark-env.sh
+
+
 # 创建spark主数据卷
 if [[ ! -d ${DOCKER_VOLUME_DIR}/${SPARK_HOME_VOLUME} ]]; then
 println_and_run "docker volume create ${SPARK_HOME_VOLUME} >/dev/null"

@@ -35,6 +35,7 @@ if [[ "${HOSTNAME}" == "${SPARK_MASTER_HOSTNAME}" ]]; then
 echo "export JAVA_HOME=${JAVA_HOME}" >> ${SPARK_HOME}/sbin/spark-config.sh
 println_and_run "hdfs dfs -fs hdfs://${HADOOP_MASTER_HOST}:${HADOOP_DFS_PORT} -mkdir -p /spark_log"
 println_and_run "${SPARK_HOME}/sbin/start-all.sh"
+println_and_run "${SPARK_HOME}/sbin/start-history-server.sh"
 # 注意！！！如果是slave, 需等待 master退出,不然会找不到slave，也可以用sleep等待
 else
 
