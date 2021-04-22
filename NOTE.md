@@ -4,4 +4,5 @@ bind mount映射的文件夹内容会覆盖docker里，volume则相反
 environments:
   - PATH=/java/bin: \
     /hadoop/hbin
-    
+# git自动转换换行符
+git config --global core.autocrlf false

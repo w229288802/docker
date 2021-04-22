@@ -46,3 +46,5 @@ scp -r spark root@node03:$PWD
 cd /export/servers/spark
 sbin/start-all.sh
 sbin/start-history-server.sh
+
+http://master:8080/

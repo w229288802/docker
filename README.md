@@ -28,6 +28,29 @@ systemctl daemon-reload
 systemctl restart docker
 
 
+#安装docker
+##卸载旧版本
+yum remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-engine
+ ##安装所需的软件包。
+ yum-utils 提供了 yum-config-manager ，并且 device mapper 存储驱动程序需要 device-mapper-persistent-data 和 lvm2。
+ yum install -y yum-utils \
+   device-mapper-persistent-data \
+   lvm2
+##添加yum仓库
+yum-config-manager \
+    --add-repo \
+    http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+#安装 Docker Engine-Community
+yum install -y docker-ce docker-ce-cli containerd.io
+    
+
 #安装docker-compose
 curl -L https://get.daocloud.io/docker/compose/releases/download/1.25.5/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose

@@ -1,33 +1,31 @@
 version: '3.8'
 services:
-  spark_master:
-    image: hadoop:v2.7.5
+  spark-master:
+    image: spark:v2.2.0
     environment:
       - JAVA_HOME=/usr
     volumes:
-      - hadoop_opt:/opt
-      - spark_master_data:/data
+      - hadoop-opt:/opt
+      - spark-master-data:/data
     privileged: true
-    hostname: master
+    hostname: spark-master
+    container_name: spark-master
     ports:
-      - 6066:6066
-      - 7077:7077
       - 8080:8080
-      - 9000:9000
-      - 19888:19888
     networks:
       - hadoop
     depends_on:
-      - spark_slave1
-  spark_slave1:
-    image: hadoop:v2.7.5
+      - spark-slave1
+  spark-slave1:
+    image: spark:v2.2.0
     environment:
       - JAVA_HOME=/usr
     volumes:
-      - hadoop_opt:/opt
-      - spark_slave1_data:/data
+      - hadoop-opt:/opt
+      - spark-slave1-data:/data
     privileged: true
-    hostname: spark_slave1
+    hostname: spark-slave1
+    container_name: spark-slave1
     networks:
       - hadoop
 networks:
@@ -35,8 +33,12 @@ networks:
     external: true
   }
 volumes:
-  hadoop_opt: {
+  hadoop-opt: {
     external: true
   }
-  spark_master_data:
-  spark_slave1_data:
+  spark-master-data: {
+    name: spark-master-data
+  }
+  spark-slave1-data: {
+    name: spark-slave1-data
+  }
