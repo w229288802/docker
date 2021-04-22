@@ -22,6 +22,8 @@ services:
     image: hadoop:v2.7.5
     environment:
       - JAVA_HOME=/usr
+    ports:
+      - 50075:50075
     volumes:
       - hadoop-opt:/opt
       - hadoop-slave1-data:/data
