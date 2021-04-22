@@ -1,5 +1,5 @@
 #!/bin/bash
-BLACK_COLOR='\033[0;30m'
+BLACK_COLOR='\033[0;35m'
 NO_COLOR='\033[0m'
 
 println_and_run() { printf "${BLACK_COLOR}$1 ${NO_COLOR}\n"; bash -c "$1";}
