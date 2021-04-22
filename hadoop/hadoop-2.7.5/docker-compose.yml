@@ -1,14 +1,15 @@
 version: '3.8'
 services:
-  master:
+  hadoop-master:
     image: hadoop:v2.7.5
     environment:
       - JAVA_HOME=/usr
     volumes:
-      - hadoop_opt:/opt
-      - hadoop_master_data:/data
+      - hadoop-opt:/opt
+      - hadoop-master-data:/data
     privileged: true
-    hostname: master
+    hostname: hadoop-master
+    container_name: hadoop-master
     ports:
       - 8088:8088
       - 50070:50070
@@ -16,16 +17,17 @@ services:
       hadoop:
           ipv4_address: 172.18.0.2
     depends_on:
-      - slave1
-  slave1:
+      - hadoop-slave1
+  hadoop-slave1:
     image: hadoop:v2.7.5
     environment:
       - JAVA_HOME=/usr
     volumes:
-      - hadoop_opt:/opt
-      - hadoop_slave1_data:/data
+      - hadoop-opt:/opt
+      - hadoop-slave1-data:/data
     privileged: true
-    hostname: slave1
+    hostname: hadoop-slave1
+    container_name: hadoop-slave1
     networks:
       hadoop:
           ipv4_address: 172.18.0.3 #由于ip不固定，slave1删除失败的时候，多个slave1会出现多ip导致ssh失败
@@ -34,8 +36,12 @@ networks:
     external: true
   }
 volumes:
-  hadoop_opt: {
+  hadoop-opt: {
     external: true
   }
-  hadoop_master_data:
-  hadoop_slave1_data:
+  hadoop-master-data: {
+    name: hadoop-master-data
+  }
+  hadoop-slave1-data: {
+    name: hadoop-slave1-data
+  }

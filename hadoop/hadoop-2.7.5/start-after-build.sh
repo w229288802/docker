@@ -7,7 +7,7 @@ println(){ printf "${BLACK_COLOR}$1 ${NO_COLOR}\n";}
 
 #配置变量
 DOCKER_VOLUME_DIR=/var/lib/docker/volumes
-HADOOP_HOME_VOLUME=hadoop_opt
+HADOOP_HOME_VOLUME=hadoop-opt
 HADOOP_VERSION=2.7.5
 HADOOP_DIR=hadoop-${HADOOP_VERSION}
 FILE_DIR=$(cd $(dirname $0); pwd)
@@ -16,6 +16,7 @@ ${FILE_DIR}/stop-after-build.sh
 
 # 下载hadoop包
 if [[ ! -f ${FILE_DIR}/${HADOOP_DIR}.tar.gz ]];then
+yum install -y wget
 println_and_run "wget http://archive.apache.org/dist/hadoop/core/${HADOOP_DIR}/${HADOOP_DIR}.tar.gz -P ${FILE_DIR}/"
 fi
 
@@ -26,14 +27,14 @@ fi
 
 # 创建hadoop主数据卷
 if [[ ! -d ${DOCKER_VOLUME_DIR}/${HADOOP_HOME_VOLUME} ]]; then
-println_and_run "docker volume create ${HADOOP_HOME_VOLUME}"
+println_and_run "docker volume create ${HADOOP_HOME_VOLUME} >/dev/null"
 println_and_run "cp -r ${FILE_DIR}/${HADOOP_DIR} ${DOCKER_VOLUME_DIR}/${HADOOP_HOME_VOLUME}/_data/"
 fi
 
 # 创建网络 docker network create hadoop --gateway=172.18.0.1 --subnet=172.18.0.0/1
 exist_hadoop_net=`docker network ls |grep -E "\s+hadoop\s+" |wc -l`
 if [[ ${exist_hadoop_net} -eq 0 ]];then
-docker network create hadoop --gateway=172.18.0.1 --subnet=172.18.0.0/1
+docker network create hadoop --gateway=172.18.0.1 --subnet=172.18.0.0/16
 fi
 
 # 复制配置到主数据卷

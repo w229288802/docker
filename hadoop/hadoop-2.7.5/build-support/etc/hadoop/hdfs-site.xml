@@ -19,7 +19,7 @@
 <configuration>
     <property>
         <name>dfs.namenode.secondary.http-address</name>
-        <value>master:50090</value>
+        <value>hadoop-master:50090</value>
     </property>
     <property>
         <name>dfs.replication</name>
