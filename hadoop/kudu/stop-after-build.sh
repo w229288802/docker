@@ -29,4 +29,5 @@ pName=`ps -aux | grep -E "\s${pid}\s" | awk '{print $12}'`
 echo ${pName##*/}> ${FILE_PATH}/`ps -ef|awk '$2=='$$'{print $3}'`.pid
 fi
 
-docker-compose -f ${FILE_PATH}/docker-compose.yml -p ${APP_NAME} down
+export KUDU_QUICKSTART_IP=$(ifconfig | grep "inet " | grep -Fv 127.0.0.1 |  awk '{print $2}' | tail -1)
+println_and_run "docker-compose -f ${FILE_PATH}/quickstart.yml -p ${APP_NAME} down"
