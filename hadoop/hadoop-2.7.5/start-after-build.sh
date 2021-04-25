@@ -22,7 +22,7 @@ fi
 
 # 解压hadoop包
 if [[ ! -d ${FILE_PATH}/${HADOOP_DIR} ]];then
-println_and_run "tar -xvf ${HADOOP_DIR}.tar.gz -C ${FILE_PATH}/"
+println_and_run "tar -xvf ${FILE_PATH}/${HADOOP_DIR}.tar.gz -C ${FILE_PATH}/"
 fi
 
 # 创建hadoop主数据卷

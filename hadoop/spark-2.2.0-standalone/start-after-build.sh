@@ -31,7 +31,7 @@ fi
 
 # 解压spark包
 if [[ ! -d ${SPARK_PATH} ]];then
-println_and_run "tar -xvf ${SPARK_DIR}-bin-${HADOOP_VERSION}.tgz"
+println_and_run "tar -xvf ${FILE_PATH}/${SPARK_DIR}-bin-${HADOOP_VERSION}.tgz"
 println_and_run "mv ${SPARK_DIR}-bin-${HADOOP_VERSION} ${SPARK_DIR}"
 fi
 
