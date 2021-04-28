@@ -1,38 +1,29 @@
 version: '3.8'
 services:
-  hadoop-master:
-    image: hadoop:v2.7.5
+  impala-master:
+    image: impala:v2.7.5
     environment:
       - JAVA_HOME=/usr
     volumes:
       - hadoop-opt:/opt
-      - hadoop-master-data:/data
-    privileged: true
-    hostname: hadoop-master
-    container_name: hadoop-master
-    ports:
-      - 8088:8088
-      - 50070:50070
+      - impala-master-data:/data
+    hostname: impala-master
+    container_name: impala-master
     networks:
-      hadoop:
-          ipv4_address: 172.18.0.2
+      - hadoop
     depends_on:
-      - hadoop-slave1
-  hadoop-slave1:
-    image: hadoop:v2.7.5
+      - impala-slave1
+  impala-slave1:
+    image: impala:${HADOOP_VERSION}
     environment:
       - JAVA_HOME=/usr
-    ports:
-      - 50075:50075
     volumes:
       - hadoop-opt:/opt
-      - hadoop-slave1-data:/data
-    privileged: true
-    hostname: hadoop-slave1
-    container_name: hadoop-slave1
+      - impala-slave1-data:/data
+    hostname: impala-slave1
+    container_name: impala-slave1
     networks:
-      hadoop:
-          ipv4_address: 172.18.0.3 #由于ip不固定，slave1删除失败的时候，多个slave1会出现多ip导致ssh失败
+      - hadoop
 networks:
   hadoop: {
     external: true
@@ -41,9 +32,9 @@ volumes:
   hadoop-opt: {
     external: true
   }
-  hadoop-master-data: {
-    name: hadoop-master-data
+  impala-master-data: {
+    name: impala-master-data
   }
-  hadoop-slave1-data: {
-    name: hadoop-slave1-data
+  impala-slave1-data: {
+    name: impala-slave1-data
   }
