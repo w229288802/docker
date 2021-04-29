@@ -21,12 +21,9 @@ echo "export PATH=${PATH}">> ~/.bashrc
 
 echo 111
 #/usr/sbin/init
-#systemctl restart autofs
 #/usr/bin/systemctl restart autofs &
 #/usr/sbin/init
 #systemctl restart autofs
-#yum install -y oracle-j2sdk1.8.x86_64
-#yum install -y cloudera-manager-daemons cloudera-manager-agent cloudera-manager-server cloudera-manager-daemons cloudera-manager-agent
 #systemctl start autofs
 #sed -i "s/server_host=localhost/server_host=${CDH_MASTER_HOSTNAME}/g" /etc/cloudera-scm-agent/config.ini
 tail -f /dev/null
