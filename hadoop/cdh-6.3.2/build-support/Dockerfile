@@ -1,12 +1,19 @@
 FROM centos:7
+
+# This steps are needed so that systemd works within container
+#ENV container docker
+
+RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
+systemd-tmpfiles-setup.service ] || rm -f $i; done); \
+rm -f /lib/systemd/system/multi-user.target.wants/*;\
+rm -f /etc/systemd/system/*.wants/*;\
+rm -f /lib/systemd/system/local-fs.target.wants/*; \
+rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
+rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
+rm -f /lib/systemd/system/basic.target.wants/*;\
+rm -f /lib/systemd/system/anaconda.target.wants/*;
 RUN yum install -y autofs
-RUN echo "[cloudera-cm]" > /etc/yum.repos.d/cm.repo &&\
-    echo "baseurl=http://yum-cdh6/cm6.3.1" >> /etc/yum.repos.d/cm.repo &&\
-    echo "gpgcheck = 0" >> /etc/yum.repos.d/cm.repo &&\
-    echo "enabled = 1" >> /etc/yum.repos.d/cm.repo
-COPY docker-entrypoint.sh /
-RUN chmod +x docker-entrypoint.sh
-ENTRYPOINT /docker-entrypoint.sh && /sbin/init
-
-
-
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+RUN systemctl enable autofs
+CMD ["/usr/local/bin/docker-entrypoint.sh"]

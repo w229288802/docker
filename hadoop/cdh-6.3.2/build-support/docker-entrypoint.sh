@@ -19,7 +19,8 @@ export PATH=$PATH:${HIVE_HOME}/bin
 echo "export HIVE_HOME=${HIVE_HOME}">> ~/.bashrc
 echo "export PATH=${PATH}">> ~/.bashrc
 
-echo 111
+/usr/bin/systemctl restart autofs &
+exec /usr/sbin/init
 #/usr/sbin/init
 #systemctl restart autofs
 #/usr/bin/systemctl restart autofs &
