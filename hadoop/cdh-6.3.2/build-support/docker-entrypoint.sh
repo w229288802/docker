@@ -19,15 +19,6 @@ export PATH=$PATH:${HIVE_HOME}/bin
 echo "export HIVE_HOME=${HIVE_HOME}">> ~/.bashrc
 echo "export PATH=${PATH}">> ~/.bashrc
 
-/usr/bin/systemctl restart autofs &
-exec /usr/sbin/init
-#/usr/sbin/init
-#systemctl restart autofs
-#/usr/bin/systemctl restart autofs &
-#/usr/sbin/init
-#systemctl restart autofs
-#yum install -y oracle-j2sdk1.8.x86_64
-#yum install -y cloudera-manager-daemons cloudera-manager-agent cloudera-manager-server cloudera-manager-daemons cloudera-manager-agent
-#systemctl start autofs
-#sed -i "s/server_host=localhost/server_host=${CDH_MASTER_HOSTNAME}/g" /etc/cloudera-scm-agent/config.ini
+sed -i "s/server_host=localhost/server_host=${CDH_MASTER_HOSTNAME}/g" /etc/cloudera-scm-agent/config.ini
+#systemctl start cloudera-scm-server
 tail -f /dev/null

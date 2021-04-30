@@ -1,19 +1,14 @@
 FROM centos:7
+ARG HOST_IP
+#RUN yum install -y java-1.8.0-openjdk-devel.x86_64
+RUN echo "[cloudera-cm]" > /etc/yum.repos.d/cm.repo &&\
+    echo "name = cloudera-cm" >> /etc/yum.repos.d/cm.repo &&\
+    echo "baseurl=http://${HOST_IP}/cm6.3.1" >> /etc/yum.repos.d/cm.repo &&\
+    echo "gpgcheck = 0" >> /etc/yum.repos.d/cm.repo &&\
+    echo "enabled = 1" >> /etc/yum.repos.d/cm.repo
+COPY docker-entrypoint.sh /
+COPY mysql-connector-java-5.1.38.jar /usr/bin/
+RUN yum install -y oracle-j2sdk1.8.x86_64
+RUN chmod +x docker-entrypoint.sh && yum -y  install  cloudera-manager-daemons cloudera-manager-agent cloudera-manager-server cloudera-manager-agent
 
-# This steps are needed so that systemd works within container
-#ENV container docker
 
-RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
-systemd-tmpfiles-setup.service ] || rm -f $i; done); \
-rm -f /lib/systemd/system/multi-user.target.wants/*;\
-rm -f /etc/systemd/system/*.wants/*;\
-rm -f /lib/systemd/system/local-fs.target.wants/*; \
-rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
-rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
-rm -f /lib/systemd/system/basic.target.wants/*;\
-rm -f /lib/systemd/system/anaconda.target.wants/*;
-RUN yum install -y autofs
-COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
-RUN systemctl enable autofs
-CMD ["/usr/local/bin/docker-entrypoint.sh"]
