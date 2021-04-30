@@ -13,14 +13,13 @@ HIVE_DIR=apache-${APP_NAME}-${HIVE_VERSION}-bin
 HIVE_HOME=/opt/${HIVE_DIR}
 HIVE_MASTER_HOSTNAME=hive-master
 HIVE_SLAVE1_HOSTNAME=hive-slave1
-PATH=$PATH:${HIVE_HOME}/bin
+export PATH=$PATH:${HIVE_HOME}/bin
 
 #导出变量
 echo "export HIVE_HOME=${HIVE_HOME}">> ~/.bashrc
 echo "export PATH=${PATH}">> ~/.bashrc
-echo $PATH
 
-# 开启hadoop
-println_and_run "chmod 777 ${HIVE_HOME}/lib/mysql-connector-java-5.1.38.jar"
-println_and_run "chmod 777 ${HIVE_HOME}/conf/hive-site.xml"
-println_and_run "${HIVE_HOME}/bin/hive"
+#开启MetaStore
+println_and_run "hive --service metastore &"
+#开启远程服务Thrift
+println_and_run "hive --service hiveserver2 "
