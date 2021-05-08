@@ -23,7 +23,7 @@ fi
 
 exist_hadoop_net=`docker ps |grep -E "\s+cdh6-mysql\s?" |wc -l`
 if [[ ${exist_hadoop_net} -eq 0 ]];then
-println_and_run "docker run --rm -d --network=hadoop --name=cdh6-mysql --hostname=mysql -e MYSQL_ROOT_PASSWORD=root mysql:5.7"
+println_and_run "docker run --rm -d --network=hadoop --name=cdh6-mysql -v cdh6-mysql --hostname=mysql -e MYSQL_ROOT_PASSWORD=root mysql:5.7"
 echo "please wait mysql on running"
 exit 0
 fi
