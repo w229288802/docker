@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   impala-master:
-    image: impala:v2.7.5
+    image: impala:v2.11.0
     environment:
       - JAVA_HOME=/usr
     volumes:
@@ -14,7 +14,7 @@ services:
     depends_on:
       - impala-slave1
   impala-slave1:
-    image: impala:${HADOOP_VERSION}
+    image: impala:v2.11.0
     environment:
       - JAVA_HOME=/usr
     volumes:
