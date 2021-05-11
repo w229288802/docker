@@ -17,11 +17,12 @@ cp
 #导出变量
 
 if [[ "${HOSTNAME}" == "${APP_NAME}-master" ]]; then
-    yum install -y impala impala-state-store impala-catalog impala-shell
-    println_and_run 0
+service impala-state-store start
+service impala-catalog start
 else
-yum install -y impala impala-server
-       println_and_run 1
+service impala-server start
 fi
+
+
 
 tail -f /dev/null

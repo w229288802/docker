@@ -9,6 +9,8 @@ services:
       - impala-master-data:/data
     hostname: impala-master
     container_name: impala-master
+    ports:
+      - 25000:25000
     networks:
       - hadoop
     depends_on:
