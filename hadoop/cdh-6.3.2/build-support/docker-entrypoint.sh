@@ -17,7 +17,8 @@ println_and_run "/usr/sbin/sshd"
 
 #配置数据库
 /opt/cloudera/cm/schema/scm_prepare_database.sh mysql -h mysql -uroot -proot --scm-host mysql scm root root
-
+cd `find / -name "hive-schema-2.1.1.mysql*" |  sed s/hive-schema.*//g`
+mysql -h mysql -uroot -proot -D hive < `find / -name "hive-schema-2.1.1.mysql*"`
 sed -i "s/server_host=localhost/server_host=${CDH_MASTER_HOSTNAME}/g" /etc/cloudera-scm-agent/config.ini
 systemctl start cloudera-scm-server
-tail -f /dev/null
+tail -f /var/log/cloudera-scm-server/cloudera-scm-server.log

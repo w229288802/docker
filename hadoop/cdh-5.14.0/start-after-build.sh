@@ -18,5 +18,4 @@ ${FILE_PATH}/stop-after-build.sh
 #ln -s /etc/hadoop/conf/core-site.xml /etc/impala/conf/core-site.xml
 #ln -s /etc/hadoop/conf/hdfs-site.xml /etc/impala/conf/hdfs-site.xml
 #ln -s /etc/hive/conf/hive-site.xml /etc/impala/conf/hive-site.xml
-
-println_and_run "docker rm -f yum-${APP_NAME} >/dev/null && docker run -d --name=yum-${APP_NAME} --hostname=yum-${APP_NAME} --network=hadoop -v ${CDH_PATH}:/usr/share/nginx/html nginx"
+println_and_run "docker rm -f ${APP_NAME}-yum 2>/dev/null && docker run -d --name=${APP_NAME}-yum --hostname=${APP_NAME}-yum --network=hadoop -v ${CDH_PATH}:/usr/share/nginx/html nginx"

@@ -21,14 +21,25 @@ if [[ ! -d ${CDH_PATH}/cm6.3.1 ]];then
 println_and_run "tar -xvf ${CDH_PATH}/cm6.3.1.tar.gz"
 fi
 
+# 创建网络 docker network create hadoop --gateway=172.18.0.1 --subnet=172.18.0.0/1
+exist_hadoop_net=`docker network ls |grep -E "\s+hadoop\s+" |wc -l`
+if [[ ${exist_hadoop_net} -eq 0 ]];then
+docker network create hadoop --gateway=172.18.0.1 --subnet=172.18.0.0/16
+fi
+
 exist_hadoop_net=`docker ps |grep -E "\s+cdh6-mysql\s?" |wc -l`
 if [[ ${exist_hadoop_net} -eq 0 ]];then
-println_and_run "docker run --rm -d --network=hadoop --name=cdh6-mysql -v cdh6-mysql --hostname=mysql -e MYSQL_ROOT_PASSWORD=root mysql:5.7"
-echo "please wait mysql on running"
+println_and_run "docker run -d --rm --network=hadoop --name=cdh6-mysql -v cdh6-mysql:/var/lib/mysql --hostname=mysql -e MYSQL_ROOT_PASSWORD=root mysql:5.7"
+echo "please wait mysql on running for restart script "
 exit 0
 fi
 
-println_and_run "docker rm -f yum-${APP_NAME} >/dev/null && docker run -d --name=yum-${APP_NAME} --hostname=yum-${APP_NAME} --network=hadoop -v ${CDH_PATH}:/usr/share/nginx/html/cdh${CDH_VERSION} -v ${CDH_PATH}/cm${CM_VERSION}:/usr/share/nginx/html/cm${CM_VERSION} nginx"
+#hive metastore 和  oozie角色需要选择,oozie可能上传会超时
+#create database if not exists hive default character set utf8 default collate utf8_general_ci;
+#create database if not exists oozie default character set utf8 default collate utf8_general_ci;
+#create database if not exists hue default character set utf8 default collate utf8_general_ci;
+
+println_and_run "docker rm -f ${APP_NAME}-yum >/dev/null && docker run -d --name=${APP_NAME}-yum --hostname=${APP_NAME}-yum --network=hadoop -v ${CDH_PATH}:/usr/share/nginx/html/cdh${CDH_VERSION} -v ${CDH_PATH}/cm${CM_VERSION}:/usr/share/nginx/html/cm${CM_VERSION} nginx"
 
 println_and_run "docker build --network=hadoop -t ${APP_NAME}:v${CDH_VERSION} ${FILE_PATH}/build-support"
 
