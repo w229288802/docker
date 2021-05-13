@@ -6,3 +6,5 @@ environments:
     /hadoop/hbin
 # git自动转换换行符
 git config --global core.autocrlf false
+# ARG参数
+在Dockerfile的CMD命令中不能替换
