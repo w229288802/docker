@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  impala-master:
+    image: hue:v3.9.0
+    environment:
+      - JAVA_HOME=/usr
+    volumes:
+      - hadoop-opt:/opt
+      - hue-data:/data
+    hostname: hue
+    container_name: hue
+    networks:
+      - hadoop
+networks:
+  hadoop: {
+    external: true
+  }
+volumes:
+  hadoop-opt: {
+    external: true
+  }
+  hue-data: {
+    name: hue-data
+  }

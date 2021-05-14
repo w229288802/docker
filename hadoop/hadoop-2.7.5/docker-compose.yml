@@ -16,7 +16,7 @@ services:
       - 9000:9000
     networks:
       hadoop:
-          ipv4_address: 172.18.0.2
+          ipv4_address: 172.18.0.100
     depends_on:
       - hadoop-slave1
   hadoop-slave1:
@@ -34,7 +34,7 @@ services:
     container_name: hadoop-slave1
     networks:
       hadoop:
-          ipv4_address: 172.18.0.3 #由于ip不固定，slave1删除失败的时候，多个slave1会出现多ip导致ssh失败
+          ipv4_address: 172.18.0.101 #由于ip不固定，slave1删除失败的时候，多个slave1会出现多ip导致ssh失败
 networks:
   hadoop: {
     external: true
