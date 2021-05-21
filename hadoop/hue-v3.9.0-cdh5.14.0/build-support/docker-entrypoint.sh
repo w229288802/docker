@@ -15,14 +15,8 @@ APP_NAME=impala
 
 #导出变量
 
-if [[ "${HOSTNAME}" == "${APP_NAME}-master" ]]; then
-service impala-state-store start
-service impala-catalog start
-else
-sed -i "s/127.0.0.1/impala-master/"  /etc/default/impala
-service impala-server start
-fi
+sed -i "s/## hive_server_host=localhost/hive_server_host=hive-master/g" /etc/hue/conf/hue.ini
 
-
+sed -i "s/## server_host=localhost/server_host=impala-master/g" /etc/hue/conf/hue.ini
 
 tail -f /dev/null
