@@ -37,7 +37,7 @@
         <name>dfs.client.use.datanode.hostname</name>
         <value>true</value>
     </property>
-    <property>
+    <!--<property>
         <name>hadoop.proxyuser.hue.hosts</name>
         <value>*</value>
     </property>
@@ -52,5 +52,5 @@
     <property>
         <name>hadoop.proxyuser.httpfs.groups</name>
         <value>*</value>
-    </property>
+    </property>-->
 </configuration>

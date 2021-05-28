@@ -15,12 +15,12 @@
 
 <configuration>
     <!-- Hue HttpFS proxy user setting -->
-    <property>
+    <!-- <property>
         <name>httpfs.proxyuser.hue.hosts</name>
         <value>*</value>
     </property>
     <property>
         <name>httpfs.proxyuser.hue.groups</name>
         <value>*</value>
-    </property>
+    </property>-->
 </configuration>

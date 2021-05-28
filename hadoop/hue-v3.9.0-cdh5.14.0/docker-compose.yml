@@ -9,6 +9,8 @@ services:
       - hue-data:/data
     hostname: hue
     container_name: hue
+    ports:
+      - 8888:8888
     networks:
       - hadoop
 networks:
