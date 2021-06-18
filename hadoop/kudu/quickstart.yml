@@ -41,7 +41,7 @@ services:
         --stderrthreshold=0
         --use_hybrid_clock=false
     networks:
-      - kudu-cluster
+      - hadoop
   kudu-master-2:
     image: apache/kudu:${KUDU_QUICKSTART_VERSION:-latest}
     ports:
@@ -65,7 +65,7 @@ services:
         --stderrthreshold=0
         --use_hybrid_clock=false
     networks:
-      - kudu-cluster
+      - hadoop
   kudu-master-3:
     image: apache/kudu:${KUDU_QUICKSTART_VERSION:-latest}
     ports:
@@ -89,7 +89,7 @@ services:
         --stderrthreshold=0
         --use_hybrid_clock=false
     networks:
-      - kudu-cluster
+      - hadoop
   kudu-tserver:
     image: apache/kudu:${KUDU_QUICKSTART_VERSION:-latest}
     depends_on:
@@ -117,11 +117,13 @@ services:
         --stderrthreshold=0
         --use_hybrid_clock=false
     networks:
-      - kudu-cluster
+      - hadoop
 volumes:
   kudu-master-1:
   kudu-master-2:
   kudu-master-3:
   kudu-tserver:
 networks:
-  kudu-cluster:
+  hadoop: {
+    external: true
+  }

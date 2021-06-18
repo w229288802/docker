@@ -9,6 +9,6 @@ RUN echo "[cloudera-cdh5]" > /etc/yum.repos.d/cloudera-cdh5.repo &&\
     echo "baseurl=http://cdh5-yum" >> /etc/yum.repos.d/cloudera-cdh5.repo &&\
     echo "gpgcheck = 0" >> /etc/yum.repos.d/cloudera-cdh5.repo  &&\
     echo "enabled = 1" >> /etc/yum.repos.d/cloudera-cdh5.repo
-RUN yum install -y impala impala-state-store impala-catalog impala-shell impala-server
+RUN yum install -y impala impala-state-store impala-catalog impala-shell impala-server java-1.8.0-openjdk gcc python-devel cyrus-sasl*
 COPY . /
 ENTRYPOINT chmod +x /docker-entrypoint.sh && /docker-entrypoint.sh
