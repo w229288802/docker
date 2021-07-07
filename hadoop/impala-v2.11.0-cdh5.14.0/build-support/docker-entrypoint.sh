@@ -16,6 +16,7 @@ APP_NAME=impala
 #导出变量
 
 if [[ "${HOSTNAME}" == "${APP_NAME}-master" ]]; then
+service impala-server start
 service impala-state-store start
 service impala-catalog start
 else
