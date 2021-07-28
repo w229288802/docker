@@ -1,0 +1,46 @@
+version: '3.8'
+services:
+  kudu-master:
+    image: kudu:v1.6.0
+    environment:
+      - JAVA_HOME=/usr
+    volumes:
+      - hadoop-opt:/opt
+      - kudu-master-data:/data
+    hostname: kudu-master
+    container_name: kudu-master
+    networks:
+      - hadoop
+    ports:
+      - 7051:7051
+      - 8051:8051
+  kudu-slave1:
+    image: kudu:v1.6.0
+    environment:
+      - JAVA_HOME=/usr
+    volumes:
+      - hadoop-opt:/opt
+      - kudu-slave1-data:/data
+    hostname: kudu-slave1
+    container_name: kudu-slave1
+    depends_on:
+      - kudu-master
+    networks:
+      - hadoop
+    ports:
+      - 7050:7050
+      - 8050:8050
+networks:
+  hadoop: {
+    external: true
+  }
+volumes:
+  hadoop-opt: {
+    external: true
+  }
+  kudu-master-data: {
+    name: kudu-master-data
+  }
+  kudu-slave1-data: {
+    name: kudu-slave1-data
+  }
