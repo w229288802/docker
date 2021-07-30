@@ -10,4 +10,4 @@ RUN sed -i "s|127.0.0.1:8118|0.0.0.0:8118|g" /etc/privoxy/config && \
 COPY build-support/opt/trojan/config.json /opt/trojan
 WORKDIR /opt/trojan
 CMD  /usr/sbin/privoxy --pidfile /run/privoxy.pid --user privoxy /etc/privoxy/config && ./trojan
-#1080端口为socks5协议 ， 8118端口为http,https协议
+#1080端口为socks5协议, switchyOmega用socks5 ， 8118端口为http,https协议
