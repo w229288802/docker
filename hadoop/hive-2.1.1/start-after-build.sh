@@ -55,5 +55,5 @@ println_and_run "\\cp -rf ${FILE_PATH}/build-support/lib/ ${DOCKER_VOLUME_DIR}/$
 println_and_run "docker build --rm -t ${APP_NAME}:v${HIVE_VERSION} ${FILE_PATH}/build-support"
 
 # 启动hadoop镜像，orphans：孤儿
-println_and_run "docker rm -f ${APP_NAME} && docker run -it --rm --name=${APP_NAME} --hostname=${APP_NAME}-master -e PATH=${PATH}:${HIVE_HOME}/bin --network hadoop -v ${HIVE_HOME_VOLUME}:/opt ${APP_NAME}:v${HIVE_VERSION}"
+println_and_run "docker rm -f ${APP_NAME} && docker run -d --rm --name=${APP_NAME} --hostname=${APP_NAME}-master -e PATH=${PATH}:${HIVE_HOME}/bin --network hadoop -v ${HIVE_HOME_VOLUME}:/opt ${APP_NAME}:v${HIVE_VERSION}"
 #println_and_run "docker-compose -f ${FILE_PATH}/docker-compose.yml -p ${APP_NAME} up --remove-orphans"
