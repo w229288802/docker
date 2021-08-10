@@ -1,13 +1,13 @@
-#### 一、privoxy安装步骤
+## 一、privoxy安装步骤
 
-##### 1. 安装privoxy
+### 1. 安装privoxy
 
 ```bash
 yum -y  install epel-release
 yum -y install privoxy
 ```
 
-##### 2. 修改配置 
+### 2. 修改配置 
 
 ```ini
 # /etc/privoxy下的config文件
@@ -16,7 +16,7 @@ forward-socks5t   .googleapis.com/               127.0.0.1:1080 .
 forward-socks5t   .google.com/                   127.0.0.1:1080 .
 ```
 
-##### 3. 重启privoxy
+### 3. 重启privoxy
 
 ```bash
 systemctl restart privoxy

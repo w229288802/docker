@@ -30,7 +30,7 @@
         <value>hadoop-master:10020</value>
     </property>
     <property>
-        <name>mapreduce.jobhistory.address</name>
+        <name>mapreduce.jobhistory.web.address</name>
         <value>hadoop-master:19888</value>
     </property>
     <property>

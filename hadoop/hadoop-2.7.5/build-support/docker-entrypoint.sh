@@ -34,6 +34,8 @@ fi
 if [[ "${HOSTNAME}" == "hadoop-master" ]]; then
 println_and_run "sed -i 's|\${JAVA_HOME}|${JAVA_HOME}|' ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh"
 println_and_run "${HADOOP_HOME}/sbin/start-all.sh"
+export USER=root #在docker里面需要指定这个不然history server启动报警告
+println_and_run "${HADOOP_HOME}/sbin/mr-jobhistory-daemon.sh start historyserver"
 # 注意！！！如果是slave, 需等待 master退出,不然会找不到slave，也可以用sleep等待
 else
 while nc -w 1 ${HADOOP_MASTER_HOSTNAME} 22 </dev/null >/dev/null 2>&1;[[ $? == 1 || $? == 2 ]] #等待master启动
