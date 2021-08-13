@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  zookeeper1:
+    image: zookeeper:v3.5.6
+    environment:
+      - JAVA_HOME=/usr
+    volumes:
+      - hadoop-opt:/opt
+    privileged: true
+    hostname: zookeeper1
+    container_name: zookeeper1
+    ports:
+      - 2181:2181
+    networks:
+      - hadoop
+  zookeeper2:
+    image: zookeeper:v3.5.6
+    environment:
+      - JAVA_HOME=/usr
+    volumes:
+      - hadoop-opt:/opt
+    privileged: true
+    hostname: zookeeper2
+    container_name: zookeeper2
+    ports:
+      - 2182:2181
+    networks:
+      - hadoop
+networks:
+  hadoop: {
+    external: true
+  }
+volumes:
+  hadoop-opt: {
+    external: true
+  }
