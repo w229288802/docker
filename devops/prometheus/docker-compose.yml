@@ -1,0 +1,8 @@
+version: '3'
+services:
+  prometheus:
+    build:
+      context: build-support
+      dockerfile: Dockerfile
+    ports:
+      - 9090:9090
