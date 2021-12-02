@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  flume-pre:
+    image: flume:v1.9.0
+    volumes:
+      - hadoop-opt:/opt
+    privileged: true
+    hostname: flume-pre
+    container_name: flume-pre
+    networks:
+      - hadoop
+  flume-post:
+    image: flume:v1.9.0
+    volumes:
+      - hadoop-opt:/opt
+    privileged: true
+    hostname: flume-post
+    container_name: flume-post
+    environment:
+      - JAVA_HOME=/usr
+      - HADOOP_HOME=/opt/hadoop-2.7.5
+      - PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
+    networks:
+      - hadoop
+networks:
+  hadoop: {
+    external: true
+  }
+volumes:
+  hadoop-opt: {
+    external: true
+  }
