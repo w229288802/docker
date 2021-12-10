@@ -8,6 +8,11 @@ println(){ printf "${BLACK_COLOR}$1 ${NO_COLOR}\n";}
 #配置变量
 #PATH=$PATH:${HADOOP_HOME}/bin
 
+if [[ ! -d /opt/applog/log ]]; then
+mkdir /opt/applog
+mkdir /opt/applog/log
+fi
+
 #导出变量
 #echo "export HADOOP_HOME=${HADOOP_HOME}">> ~/.bashrc
 #echo "export PATH=${PATH}">> ~/.bashrc

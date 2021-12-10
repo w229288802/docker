@@ -43,10 +43,10 @@ fi
 println_and_run "cp ${FILE_PATH}/${APP_DIR}/conf/flume-env.sh.template ${FILE_PATH}/${APP_DIR}/conf/flume-env.sh"
 
 # 复制spark包
-if [[ ! -d ${DOCKER_VOLUME_DIR}/${APP_HOME_VOLUME}/_data/${APP_DIR} ]]; then
+#if [[ ! -d ${DOCKER_VOLUME_DIR}/${APP_HOME_VOLUME}/_data/${APP_DIR} ]]; then
 println_and_run "cp -r ${FILE_PATH}/${APP_DIR} ${DOCKER_VOLUME_DIR}/${APP_HOME_VOLUME}/_data/"
-println_and_run "sed -ir 's/# export JAVA_HOME=.*/export JAVA_HOME=\/usr\/local\/openjdk-8/g' ${DOCKER_VOLUME_DIR}/${APP_HOME_VOLUME}/_data/flume-1.9.0/conf/flume-env.sh"
-fi
+println_and_run "sed -ir 's/# export JAVA_HOME=.*/export JAVA_HOME=\/usr/g' ${DOCKER_VOLUME_DIR}/${APP_HOME_VOLUME}/_data/flume-1.9.0/conf/flume-env.sh"
+#fi
 
 
 #sed -i "s/localhost:2181/${ZOOKEEPER_SERVER_LIST}/g"  ${DOCKER_VOLUME_DIR}/${APP_HOME_VOLUME}/_data/${APP_DIR}/config/server.properties
