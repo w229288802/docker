@@ -1,0 +1,39 @@
+version: '3.8'
+services:
+  server1:
+    image: mock-log
+    environment:
+      - JAVA_HOME=/usr
+    volumes:
+      - hadoop-opt:/opt
+      - hadoop-slave1-data:/data
+    privileged: true
+    hostname: server1
+    container_name: server1
+  server2:
+    image: mock-log
+    environment:
+      - JAVA_HOME=/usr
+    volumes:
+      - hadoop-opt:/opt
+      - hadoop-slave2-data:/data
+    privileged: true
+    hostname: server2
+    container_name: server2
+networks:
+  hadoop: {
+    external: true
+  }
+volumes:
+  hadoop-opt: {
+    external: true
+  }
+  hadoop-master-data: {
+    name: hadoop-master-data
+  }
+  hadoop-slave1-data: {
+    name: hadoop-slave1-data
+  }
+  hadoop-slave2-data: {
+    name: hadoop-slave2-data
+  }

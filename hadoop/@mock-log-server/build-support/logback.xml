@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <springProperty scope="context" name="HOSTNAME" source="hostname"/>
+    <springProperty scope="context" name="TIMESTAMP" source="timestamp"/>
+
+    <property name="LOG_HOME" value="/data/log" />
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%replace(%msg){'("ts":\d+)', '$1,"hostname":"${HOSTNAME}"'}%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/app.%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%replace(%msg){'("ts":\d+)', '$1,"hostname":"${HOSTNAME}"'}%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 将某一个包下日志单独打印日志 -->
+    <logger name="com.atgugu.gmall2020.mock.log.util.LogUtil"
+            level="INFO" additivity="false">
+        <appender-ref ref="rollingFile" />
+        <appender-ref ref="console" />
+    </logger>
+
+    <root level="error"  >
+        <appender-ref ref="console" />
+    </root>
+</configuration>
