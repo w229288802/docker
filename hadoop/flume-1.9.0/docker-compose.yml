@@ -1,12 +1,31 @@
 version: '3.8'
 services:
-  flume-pre:
+  flume-pre1:
     image: flume:v1.9.0
     volumes:
       - hadoop-opt:/opt
+      - hadoop-slave1-data:/data
     privileged: true
-    hostname: flume-pre
-    container_name: flume-pre
+    hostname: flume-pre1
+    container_name: flume-pre1
+    environment:
+      - JAVA_HOME=/usr
+      - HADOOP_HOME=/opt/hadoop-3.1.3
+      - PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
+    networks:
+      - hadoop
+  flume-pre2:
+    image: flume:v1.9.0
+    volumes:
+      - hadoop-opt:/opt
+      - hadoop-slave2-data:/data
+    privileged: true
+    hostname: flume-pre2
+    container_name: flume-pre2
+    environment:
+      - JAVA_HOME=/usr
+      - HADOOP_HOME=/opt/hadoop-3.1.3
+      - PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
     networks:
       - hadoop
   flume-post:
@@ -18,7 +37,7 @@ services:
     container_name: flume-post
     environment:
       - JAVA_HOME=/usr
-      - HADOOP_HOME=/opt/hadoop-2.7.5
+      - HADOOP_HOME=/opt/hadoop-3.1.3
       - PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
     networks:
       - hadoop
@@ -29,4 +48,10 @@ networks:
 volumes:
   hadoop-opt: {
     external: true
+  }
+  hadoop-slave1-data: {
+    name: hadoop-slave1-data
+  }
+  hadoop-slave2-data: {
+    name: hadoop-slave2-data
   }

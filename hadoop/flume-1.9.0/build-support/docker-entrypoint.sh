@@ -7,18 +7,18 @@ println(){ printf "${BLACK_COLOR}$1 ${NO_COLOR}\n";}
 
 #配置变量
 #PATH=$PATH:${HADOOP_HOME}/bin
-
-if [[ ! -d /opt/applog/log ]]; then
-mkdir /opt/applog
-mkdir /opt/applog/log
-fi
-
+FLUME_HOME=/opt/flume-1.9.0
+HADOOP_HOME=/opt/hadoop-3.1.3
 #导出变量
 #echo "export HADOOP_HOME=${HADOOP_HOME}">> ~/.bashrc
 #echo "export PATH=${PATH}">> ~/.bashrc
-if [[ "${HOSTNAME}" == "flume-pre" ]]; then
+if [[ "${HOSTNAME}" != "flume-post" ]]; then
 /opt/flume-1.9.0/bin/flume-ng agent -c /opt/flume-1.9.0/conf -f /opt/flume-1.9.0/conf/preposition-flume-kafka.conf -n a1 -Dflume.root.logger=INFO,console
 else
+
+rm ${FLUME_HOME}/lib/guava-*.jar
+
+cp ${HADOOP_HOME}/share/hadoop/common/lib/guava-*.jar ${HIVE_HOME}/lib/
 /opt/flume-1.9.0/bin/flume-ng agent -c /opt/flume-1.9.0/conf -f /opt/flume-1.9.0/conf/postposition-flume-kafka.conf -n a1 -Dflume.root.logger=INFO,console
 fi
 #/opt/flume-1.9.0/bin/flume-ng agent --name a1 --conf-file conf/file-flume-kafka.conf &
