@@ -1,0 +1,42 @@
+version: '3.8'
+services:
+  hive-master:
+    image: hive:v3.1.2
+    environment:
+      - JAVA_HOME=/usr
+    volumes:
+      - hadoop-opt:/opt
+      - hive-master-data:/data
+    privileged: true
+    hostname: hive-master
+    container_name: hive-master
+    networks:
+      - hadoop
+    depends_on:
+      - hive-slave1
+  hive-slave1:
+    image: hive:v3.1.2
+    environment:
+      - JAVA_HOME=/usr
+    volumes:
+      - hadoop-opt:/opt
+      - hive-slave1-data:/data
+    privileged: true
+    hostname: hive-slave1
+    container_name: hive-slave1
+    networks:
+      - hadoop
+networks:
+  hadoop: {
+    external: true
+  }
+volumes:
+  hadoop-opt: {
+    external: true
+  }
+  hive-master-data: {
+    name: hive-master-data
+  }
+  hive-slave1-data: {
+    name: hive-slave1-data
+  }
