@@ -1,0 +1,63 @@
+version: "3"
+## docker desktop启动时报错
+## wsl -d docker-desktop and sysctl -w vm.max_map_count=262144
+services:
+  es-tribe:
+    image: elasticsearch:7.1.0
+    container_name: es-tribe
+    environment: # setting container env
+      - ES_JAVA_OPTS=${ES_JVM_OPTS}   # set es bootstrap jvm args
+    volumes:
+      - ./docker-es-tribe/es-config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./docker-es-tribe/tribe-data:/usr/share/elasticsearch/data:rw
+      - ./docker-es-tribe/tribe-data:/usr/share/elasticsearch/logs:rw
+    networks:
+      es:
+  es-master:
+    image: elasticsearch:7.1.0
+    container_name: es-master
+    environment: # setting container env
+      - ES_JAVA_OPTS=${ES_JVM_OPTS}   # set es bootstrap jvm args
+    volumes:
+      - ./docker-es-master/es-config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./docker-es-master/master-data:/usr/share/elasticsearch/data:rw
+      - ./docker-es-master/master-logs:/usr/share/elasticsearch/logs:rw
+    networks:
+      es:
+    ports:
+       - 9200:9200
+  es-data01:
+    image: elasticsearch:7.1.0
+    container_name: es-data01
+    environment: # setting container env
+      - ES_JAVA_OPTS=${ES_JVM_OPTS}   # set es bootstrap jvm args
+    volumes:
+      - ./docker-es-data01/es-config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./docker-es-data01/data01:/usr/share/elasticsearch/data:rw
+      - ./docker-es-data01/data01-logs:/usr/share/elasticsearch/logs:rw
+    networks:
+      es:
+  es-data02:
+    image: elasticsearch:7.1.0
+    container_name: es-data02
+    environment: # setting container env
+      - ES_JAVA_OPTS=${ES_JVM_OPTS}   # set es bootstrap jvm args
+    volumes:
+      - ./docker-es-data02/es-config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./docker-es-data02/data02:/usr/share/elasticsearch/data:rw
+      - ./docker-es-data02/data02:/usr/share/elasticsearch/logs:rw
+    networks:
+      es:
+  es-data03:
+    image: elasticsearch:7.1.0
+    container_name: es-data03
+    environment: # setting container env
+      - ES_JAVA_OPTS=${ES_JVM_OPTS}   # set es bootstrap jvm args
+    volumes:
+      - ./docker-es-data03/es-config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./docker-es-data03/data03:/usr/share/elasticsearch/data:rw
+      - ./docker-es-data03/data03:/usr/share/elasticsearch/logs:rw
+    networks:
+      es:
+networks:
+  es:

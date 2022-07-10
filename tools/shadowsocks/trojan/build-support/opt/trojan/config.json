@@ -2,10 +2,10 @@
   "run_type": "client",
   "local_addr": "0.0.0.0",
   "local_port": 1080,
-  "remote_addr": "us2-1.troiecloud.com",
-  "remote_port": 443,
+  "remote_addr": "@host",
+  "remote_port": @port,
   "password": [
-    "H2VWd24V4h52Habxe4"
+    "@password"
   ],
   "log_level": 1,
   "ssl": {

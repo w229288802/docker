@@ -8,6 +8,7 @@ RUN sed -i "s|127.0.0.1:8118|0.0.0.0:8118|g" /etc/privoxy/config && \
     #可以访问网页
     echo "forward-socks5t   /                   127.0.0.1:1080 ." >> /etc/privoxy/config
 COPY build-support/opt/trojan/config.json /opt/trojan
+COPY build-support/opt/trojan/account.sh /opt/trojan
 WORKDIR /opt/trojan
-CMD  /usr/sbin/privoxy --pidfile /run/privoxy.pid --user privoxy /etc/privoxy/config && ./trojan
+CMD  /usr/sbin/privoxy --pidfile /run/privoxy.pid --user privoxy /etc/privoxy/config &&./account.sh && ./trojan
 #1080端口为socks5协议, switchyOmega用socks5 ， 8118端口为http,https协议

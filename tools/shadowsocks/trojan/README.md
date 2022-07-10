@@ -18,3 +18,7 @@
 
 sudo ./trojan &
 pkill -f trojan
+
+4. 免费trojan
+https://github.com/freefq/free/blob/master/README.md
+https://raw.fastgit.org/freefq/free/master/v2

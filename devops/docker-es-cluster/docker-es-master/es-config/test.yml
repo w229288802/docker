@@ -1,0 +1,164 @@
+################################### Cluster ###################################
+#定义集群名称,默认是elasticsearch
+cluster.name: elasticsearch
+#################################### Node #####################################
+#定义此节点名称
+node.name: "node-1"
+
+#此节点是否为master,master作用就是做协调,协调集群的状态,数据的读取时由集群的各个节点共同完成的,但是数据的修改只能master完成
+# 当前节点是否可以被选举为master节点，是：true、否：false
+node.master: true
+#此节点是否为子节点,功能就是存储数据,存储索引之类的，当前节点是否用于存储数据，是：true、否：false
+node.data: true
+#node.rack: rack314
+#每个热/温/冷节点加入如下配置并重启服务
+#这两项配置是为节点增加标签，具体名称并不是写死的，与后面模板和策略配置有关
+node.attr.box_type: hot/warm/cold
+node.attr.rack: rack1
+
+  # 设置一台服务器能运行的节点数,一般为1就好,因为一般情况下一台机器只跑一个节点
+  #node.max_local_storage_nodes: 1
+  #################################### Index ####################################
+  #注：ES7.×版本后不再支持定义索引属性
+  #定义索引分片的数量
+  #index.number_of_shards: 5
+  #定义副本的数量
+  #index.number_of_replicas: 1
+  #################################### Paths ####################################
+  #定义配置文件的设置
+  #path.conf: /path/to/conf
+  #定义索引数据存储的位置
+  #path.data: /path/to/data
+  #path.data: /path/to/data1,/path/to/data2
+
+  #定义临时文件的位置
+  #path.work: /path/to/work
+
+  # Path to log files:
+  #定义日志文件的路径
+  #path.logs: /path/to/logs
+
+#定义插件的位置
+#path.plugins: /path/to/plugins
+
+# 需求锁住物理内存，是：true、否：false
+bootstrap.memory_lock: false
+# SecComp检测，是：true、否：false
+bootstrap.system_call_filter: false
+
+
+  #################################### Plugin ###################################
+  #这个属性值为各个插件的名称,如果该值里的所列的插件没安装,则该节点不能启动,默认是没有插件
+  #plugin.mandatory: mapper-attachments,lang-groovy
+  ################################### Memory ####################################
+  #es在内存不够jvm开启swapping的时候,表现的会很差,所以为了避免这个问题,将概述性设置为true,表示锁定es所使用的内存
+  ############################## Network And HTTP ###############################
+  #elasticsearch节点绑定的地址
+  #network.bind_host: 192.168.0.1
+  #elasticsearch和其他节点通信的地址,如果不设置的话 会自动获取
+  #network.publish_host: 192.168.0.1
+
+# Set both 'bind_host' and 'publish_host':
+#
+#network.host: 192.168.0.1
+network.host: 0.0.0.0
+#设置节点之间通信的端口
+#transport.tcp.port: 9300
+#定义是否压缩tcp传输时的数据
+#transport.tcp.compress: true
+#定义http传输监听的端口
+# 主机访问的端口号
+http.port: 9200
+#设置http交互中传输内容的最大长度
+#http.max_content_length: 100mb
+#是否启用http协议,如果不想让elasticsearch走http协议就设置为FALSE
+#http.enabled: false
+
+# 是否支持跨域，是：true，在使用head插件时需要此配置
+http.cors.enabled: true
+
+# "*" 表示支持所有域名
+http.cors.allow-origin: "*"
+
+  ################################### Gateway ###################################
+  #elasticsearch底层持久化,默认是走的本地,也可以设置为aws的s3
+  #gateway.type: local
+  #控制集群在达到多少个节点之后才会开始数据恢复,通过这个设置可以避免集群自动相互发现的初期,shard分片不全的问题,
+  #假如es集群内一共有5个节点,就可以设置为5,那么这个集群必须有5个节点启动后才会开始数据分片,如果设置为3,就有可能另外两个节点没存储数据分片
+  #gateway.recover_after_nodes: 1
+  #初始化数据恢复的超时时间,假如gateway.recover_after_nodes参数设置为5,就是5个节点全部启动后,再过5分钟开始数据恢复
+  #gateway.recover_after_time: 5m
+
+  # Set how many nodes are expected in this cluster. Once these N nodes
+  # are up (and recover_after_nodes is met), begin recovery process immediately
+  # (without waiting for recover_after_time to expire):
+  #启动几个节点后开始数据恢复,假如gateway.recover_after_nodes这个参数设置为5,那么等到这5个节点全部启动后直接可以数据恢复,不用等待gateway.recover_after_time设置的时间
+  #gateway.expected_nodes: 2
+  ############################# Recovery Throttling #############################
+  #设置一个节点的并发数量,
+  #cluster.routing.allocation.node_initial_primaries_recoveries: 4
+  #cluster.routing.allocation.node_concurrent_recoveries: 2
+  # Set to throttle throughput when recovering (eg. 100mb, by default 20mb):
+  #恢复数据时,限制的宽带流量,如果是0就是无限制
+  #indices.recovery.max_bytes_per_sec: 20mb
+
+  #从其他分片恢复数据时,最大打开并发的值
+  #indices.recovery.concurrent_streams: 5
+
+################################## Discovery ##################################
+#1、在新版7.0的es中，对es的集群发现系统做了调整，不再有discovery.zen.minimum_master_nodes这个控制集群脑裂的配置，
+#转而由集群自主控制，并且新版在启动一个新的集群的时候需要有cluster.initial_master_nodes初始化集群列表。
+#2、在es7中，discovery.zen.* 开头的参数，有些已经失效
+#（旧）
+#设置这个集群,有多少个节点有master候选资格,如果集群较大官方建议为2-4个
+#discovery.zen.minimum_master_nodes: 2
+#es集群中自动发现其他节点的超时时间,如果网络延迟较大,建议设置长一点,防止误判
+#discovery.zen.ping.timeout: 3s
+#是否打开多播协议
+#discovery.zen.ping.multicast.enabled: false
+#设置集群中master集群初始化列表,这个数组里的机器将被自动发现加入集群
+#discovery.zen.ping.unicast.hosts: ["host1", "host2:port"]
+
+#（新）
+# es7.x 之后新增的配置，写入候选主节点的设备地址，在开启服务后可以被选为主节点
+# es7之后，不需要上面discovery.zen.ping.unicast.hosts这个参数，用discovery.seed_hosts替换
+# discovery.zen.ping.unicast.hosts: ["10.19.1.9:9200","10.19.1.10:9200","10.19.1.11:9200"]
+discovery.seed_hosts: ["10.19.1.9:9200","10.19.1.10:9200","10.19.1.11:9200"]
+
+# es7.x 之后新增的配置，初始化一个新的集群时需要此配置来选举master
+#cluster.initial_master_nodes: [“node-1”]
+cluster.initial_master_nodes: ["node-1"]
+
+  ################################## Slow Log ##################################
+
+  # Shard level query and fetch threshold logging.
+
+  #index.search.slowlog.threshold.query.warn: 10s
+  #index.search.slowlog.threshold.query.info: 5s
+  #index.search.slowlog.threshold.query.debug: 2s
+  #index.search.slowlog.threshold.query.trace: 500ms
+
+  #index.search.slowlog.threshold.fetch.warn: 1s
+  #index.search.slowlog.threshold.fetch.info: 800ms
+  #index.search.slowlog.threshold.fetch.debug: 500ms
+  #index.search.slowlog.threshold.fetch.trace: 200ms
+
+  #index.indexing.slowlog.threshold.index.warn: 10s
+  #index.indexing.slowlog.threshold.index.info: 5s
+  #index.indexing.slowlog.threshold.index.debug: 2s
+  #index.indexing.slowlog.threshold.index.trace: 500ms
+
+  ################################## GC Logging ################################
+  #monitor.jvm.gc.young.warn: 1000ms
+  #monitor.jvm.gc.young.info: 700ms
+  #monitor.jvm.gc.young.debug: 400ms
+  #monitor.jvm.gc.old.warn: 10s
+  #monitor.jvm.gc.old.info: 5s
+  #monitor.jvm.gc.old.debug: 2s
+  ################################## Security ################################
+
+# Uncomment if you want to enable JSONP as a valid return transport on the
+# http server. With this enabled, it may pose a security risk, so disabling
+# it unless you need it is recommended (it is disabled by default).
+#
+#http.jsonp.enable: true
