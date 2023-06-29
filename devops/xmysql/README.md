@@ -1,0 +1,1 @@
+docker run -itd --name=xmysql --restart=always -p 3000:3000 node bash -c "npm install -g xmysql && xmysql -h 10.199.209.51 -u wchlb2b_test -p AlWpoxWj3AZleJ91 -d wchlb2b_test -r 0.0.0.0"
