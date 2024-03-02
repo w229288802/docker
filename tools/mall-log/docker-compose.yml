@@ -1,0 +1,18 @@
+version: '3'
+services:
+  main:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: mall-log
+    container_name: mall-log
+    restart: 'always'
+    ports:
+      - "13100:13100"
+    networks:
+      mall-net:
+        ipv4_address: 192.168.1.122
+networks:
+  mall-net: {
+    external: true
+  }

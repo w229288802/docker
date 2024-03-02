@@ -7,6 +7,7 @@ a=(${array[3]})
 echo "====连接到===="
 echo $a
 arr=(${a//,/ })
+arr=("us1.trojan-lite.com" "443" "DkRC9bbcEqBfqs4NQg")
 sed -i "s/@password/${arr[2]}/g" ./config.json
 sed -i "s/@host/${arr[0]}/g" ./config.json
 sed -i "s/@port/${arr[1]}/g" ./config.json
