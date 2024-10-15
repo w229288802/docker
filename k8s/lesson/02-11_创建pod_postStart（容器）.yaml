@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo-post-start
+  namespace: default
+spec:
+  restartPolicy: Never # Always:总是重启;OnFailure:失败时重启;Never:从不重启
+  containers:
+    - name: c1
+      image: nginx
+      imagePullPolicy: IfNotPresent
+      lifecycle:
+        postStart:
+          exec:
+            command: ["/bin/sh", "-c", "echo hello > /tmp/hello.txt"]

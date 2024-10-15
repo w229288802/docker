@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo-probe-exec
+  namespace: default
+spec:
+  containers:
+    - name: c1
+      image: busybox
+      imagePullPolicy: IfNotPresent
+      command: ["/bin/sh"]
+      args: ["-c", "touch /tmp/healthy;sleep 30;rm -rf /tmp/healthy; sleep 600"]
+      ### 指示容器是否正在运行。如果存活态探测失败，则 kubelet 会杀死容器， 并且容器将根据其[重启策略]决定。如果容器不提供存活探针， 则默认状态为 `Success`。
+      livenessProbe:
+        exec:
+          command: ["cat", "/tmp/healthy"]
+        initialDelaySeconds: 5 # 容器启动后多久开始探测
+        periodSeconds: 1 # 每隔多久探测一次
+      ### 指示容器是否准备好为请求提供服务。如果就绪态探测失败， 端点控制器将从与 Pod 匹配的所有服务的端点列表中删除该 Pod 的 IP 地址。 初始延迟之前的就绪态的状态值默认为 `Failure`。 如果容器不提供就绪态探针，则默认状态为 `Success`。注：检查后不健康，将容器设置为Notready;如果使用service来访问,流量不会转发给此种状态的pod
+      readinessProbe:
+        exec:
+          command: [ "cat", "/tmp/healthy" ]
+        initialDelaySeconds: 5 # 容器启动后多久开始探测
+        periodSeconds: 1 # 每隔多久探测一次

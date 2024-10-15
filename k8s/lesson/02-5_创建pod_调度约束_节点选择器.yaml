@@ -1,11 +1,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: demo-label
+  name: demo-schedule-nodeName
   namespace: default
-  labels:
-    app: stress
 spec:
+  nodeName: worker06
   containers:
     - name: c1
       image: polinux/stress
