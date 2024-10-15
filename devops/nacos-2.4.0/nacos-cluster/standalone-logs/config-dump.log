@@ -1,0 +1,24 @@
+2024-10-15 09:33:02,577 INFO [dump] md5 changed, save to disk cache ,groupKey=alibaba-chapter3-sentinel-nacos-service-system-rules+SENTINEL_GROUP, newMd5=ef43fd211edbd193359c91536fe6c5df,oldMd5=
+
+2024-10-15 09:33:02,577 INFO [dump] md5 changed, save to disk cache ,groupKey=alibaba-chapter3-sentinel-nacos-service-flow-rules+SENTINEL_GROUP, newMd5=d751713988987e9331980363e24189ce,oldMd5=
+
+2024-10-15 09:33:02,577 INFO [dump] md5 changed, save to disk cache ,groupKey=alibaba-chapter3-sentinel-nacos-service-degrade-rules+SENTINEL_GROUP, newMd5=d751713988987e9331980363e24189ce,oldMd5=
+
+2024-10-15 09:33:02,577 INFO [dump] md5 changed, save to disk cache ,groupKey=seataServer.properties+SEATA_GROUP, newMd5=2821a982d7442aa90bc3150f85425283,oldMd5=
+
+2024-10-15 09:33:02,687 INFO [dump] md5 changed, update md5 and timestamp in jvm cache ,groupKey=alibaba-chapter3-sentinel-nacos-service-degrade-rules+SENTINEL_GROUP, newMd5=d751713988987e9331980363e24189ce,oldMd5=,lastModifiedTs=1723593955000
+
+2024-10-15 09:33:02,687 INFO [dump] md5 changed, update md5 and timestamp in jvm cache ,groupKey=alibaba-chapter3-sentinel-nacos-service-flow-rules+SENTINEL_GROUP, newMd5=d751713988987e9331980363e24189ce,oldMd5=,lastModifiedTs=1723567424000
+
+2024-10-15 09:33:02,687 INFO [dump] md5 changed, update md5 and timestamp in jvm cache ,groupKey=seataServer.properties+SEATA_GROUP, newMd5=2821a982d7442aa90bc3150f85425283,oldMd5=,lastModifiedTs=1723647081000
+
+2024-10-15 09:33:02,687 INFO [dump] md5 changed, update md5 and timestamp in jvm cache ,groupKey=alibaba-chapter3-sentinel-nacos-service-system-rules+SENTINEL_GROUP, newMd5=ef43fd211edbd193359c91536fe6c5df,oldMd5=,lastModifiedTs=1723652690000
+
+2024-10-15 09:33:02,688 INFO [dump-all-ok] alibaba-chapter3-sentinel-nacos-service-degrade-rules+SENTINEL_GROUP, 1723593955000, length=2,md5UTF8=d751713988987e9331980363e24189ce
+
+2024-10-15 09:33:02,688 INFO [dump-all-ok] alibaba-chapter3-sentinel-nacos-service-flow-rules+SENTINEL_GROUP, 1723567424000, length=2,md5UTF8=d751713988987e9331980363e24189ce
+
+2024-10-15 09:33:02,688 INFO [dump-all-ok] seataServer.properties+SEATA_GROUP, 1723647081000, length=984,md5UTF8=2821a982d7442aa90bc3150f85425283
+
+2024-10-15 09:33:02,688 INFO [dump-all-ok] alibaba-chapter3-sentinel-nacos-service-system-rules+SENTINEL_GROUP, 1723652690000, length=229,md5UTF8=ef43fd211edbd193359c91536fe6c5df
+

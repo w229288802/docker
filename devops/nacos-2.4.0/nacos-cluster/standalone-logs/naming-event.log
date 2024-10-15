@@ -1,0 +1,48 @@
+2024-08-15 00:04:40,508 INFO {POS} {IP-DISABLED} valid: 192.168.2.104:8082@DEFAULT@order-service, region: unknown, msg: client last beat: 1723651464544
+
+2024-08-15 00:04:48,046 INFO service: DEFAULT_GROUP@@order-service {POS} {IP-ENABLED} valid: 192.168.2.104:8082@DEFAULT, region: unknown, msg: client beat ok
+
+2024-08-15 00:11:32,166 INFO {POS} {IP-DISABLED} valid: 192.168.137.1:8091@default@seata-server, region: unknown, msg: client last beat: 1723651873928
+
+2024-08-15 00:14:34,856 INFO {POS} {IP-DISABLED} valid: 192.168.137.1:8091@default@seata-server, region: unknown, msg: client last beat: 1723652055013
+
+2024-08-15 00:16:29,856 INFO {POS} {IP-DISABLED} valid: 192.168.137.1:8091@default@seata-server, region: unknown, msg: client last beat: 1723652173548
+
+2024-08-15 09:19:45,450 INFO {POS} {IP-DISABLED} valid: 192.168.2.104:8082@DEFAULT@order-service, region: unknown, msg: client last beat: 1723684767972
+
+2024-08-15 09:19:46,512 INFO {POS} {IP-DISABLED} valid: 192.168.2.104:8083@DEFAULT@account-service, region: unknown, msg: client last beat: 1723684768621
+
+2024-08-15 09:19:47,667 INFO {POS} {IP-DISABLED} valid: 192.168.2.104:8081@DEFAULT@storage-service, region: unknown, msg: client last beat: 1723684769957
+
+2024-08-15 09:19:50,015 INFO service: DEFAULT_GROUP@@storage-service {POS} {IP-ENABLED} valid: 192.168.2.104:8081@DEFAULT, region: unknown, msg: client beat ok
+
+2024-08-15 09:19:52,180 INFO service: DEFAULT_GROUP@@order-service {POS} {IP-ENABLED} valid: 192.168.2.104:8082@DEFAULT, region: unknown, msg: client beat ok
+
+2024-08-15 09:19:52,543 INFO service: DEFAULT_GROUP@@account-service {POS} {IP-ENABLED} valid: 192.168.2.104:8083@DEFAULT, region: unknown, msg: client beat ok
+
+2024-08-15 10:37:17,490 INFO {POS} {IP-DISABLED} valid: 192.168.137.1:8091@default@seata-server, region: unknown, msg: client last beat: 1723688984008
+
+2024-08-15 10:37:22,057 INFO {POS} {IP-DISABLED} valid: 192.168.2.104:8082@DEFAULT@order-service, region: unknown, msg: client last beat: 1723688984048
+
+2024-08-15 10:37:22,057 INFO {POS} {IP-DISABLED} valid: 192.168.2.104:8083@DEFAULT@account-service, region: unknown, msg: client last beat: 1723688984050
+
+2024-08-15 23:06:22,519 INFO {POS} {IP-DISABLED} valid: 192.168.137.1:8091@default@seata-server, region: unknown, msg: client last beat: 1723710802526
+
+2024-08-15 23:06:27,106 INFO {POS} {IP-DISABLED} valid: 192.168.2.104:8081@DEFAULT@storage-service, region: unknown, msg: client last beat: 1723710802537
+
+2024-08-15 23:06:27,106 INFO {POS} {IP-DISABLED} valid: 192.168.2.104:8082@DEFAULT@order-service, region: unknown, msg: client last beat: 1723710802526
+
+2024-08-15 23:06:27,106 INFO {POS} {IP-DISABLED} valid: 192.168.2.104:8083@DEFAULT@account-service, region: unknown, msg: client last beat: 1723710802537
+
+2024-08-15 23:06:27,106 ERROR Event callback exception: 
+
+java.lang.NullPointerException: null
+	at com.alibaba.nacos.naming.core.v2.index.ClientServiceIndexesManager.handleClientDisconnect(ClientServiceIndexesManager.java:112)
+	at com.alibaba.nacos.naming.core.v2.index.ClientServiceIndexesManager.onEvent(ClientServiceIndexesManager.java:93)
+	at com.alibaba.nacos.naming.core.v2.event.publisher.NamingEventPublisher.lambda$notifySubscriber$2(NamingEventPublisher.java:112)
+	at com.alibaba.nacos.naming.core.v2.event.publisher.NamingEventPublisher.notifySubscriber(NamingEventPublisher.java:118)
+	at com.alibaba.nacos.naming.core.v2.event.publisher.NamingEventPublisher.handleEvent(NamingEventPublisher.java:176)
+	at com.alibaba.nacos.naming.core.v2.event.publisher.NamingEventPublisher.handleEvents(NamingEventPublisher.java:157)
+	at com.alibaba.nacos.naming.core.v2.event.publisher.NamingEventPublisher.run(NamingEventPublisher.java:135)
+2024-08-15 23:48:52,272 INFO {POS} {IP-DISABLED} valid: 192.168.137.1:8091@default@seata-server, region: unknown, msg: client last beat: 1723736913565
+
