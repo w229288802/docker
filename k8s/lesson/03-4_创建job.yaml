@@ -6,6 +6,7 @@ metadata:
 spec:
   completions: 10                                               # 执行job的次数
   parallelism: 1                                                # 执行job的并发数
+  backoffLimit: 0                                             # 失败后重试次数
   template:
     metadata:
       name: pi
