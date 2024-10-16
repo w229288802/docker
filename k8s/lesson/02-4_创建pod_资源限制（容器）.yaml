@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: demo-resource-limit
+  name: pod-resource-limit
   namespace: default
   labels:
     app: stress

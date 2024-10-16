@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: demo-schedule-nodeSelector
+  name: pod-schedule-nodeSelector
   namespace: default
 spec:
   nodeSelector:

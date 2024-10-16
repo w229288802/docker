@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: demo-label
+  name: pod-label
   namespace: default
   labels:
     app: stress

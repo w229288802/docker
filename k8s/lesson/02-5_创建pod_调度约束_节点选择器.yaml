@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: demo-schedule-nodeName
+  name: pod-schedule-nodeName
   namespace: default
 spec:
   nodeName: worker06

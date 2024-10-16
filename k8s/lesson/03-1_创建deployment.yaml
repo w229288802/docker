@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy
+  namespace: default
+spec:
+  # 副本扩容
+  # kubectl scale deployment deploy-nginx --replicas=3
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: c1
+          # 镜像版本变更
+          # kubectl set image deployment deploy-nginx nginx=nginx:1.16-alpine --record
+          # kubectl rollout status deployment deploy-nginx
+          # kubectl describe pod deploy-nginx-5f4749c8c8-1nkp9 |grep Image:
+          # kubectl exec deploy-nginx-6d9d558bb6-f2t6r -- /usr/sbin/nginx -v
+          # 镜像版本回退
+          # kubectl rollout history deployment deploy-nginx
+          # kubectl rollout history deployment deploy-nginx --revision=1
+          # kubectl rollout undo deployment deploy-nginx --to-revision=1
+          image: nginx
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80

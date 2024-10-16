@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: demo-restart-policy
+  name: pod-restart-policy
   namespace: default
 spec:
   restartPolicy: Never # Always:总是重启;OnFailure:失败时重启;Never:从不重启

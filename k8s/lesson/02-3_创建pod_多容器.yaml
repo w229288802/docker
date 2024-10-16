@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: demo-multi-container
+  name: pod-multi-container
   namespace: default
   labels:
     app: stress

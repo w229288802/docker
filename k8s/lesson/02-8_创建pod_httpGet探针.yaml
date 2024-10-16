@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: demo-probe-http-get
+  name: pod-probe-http-get
   namespace: default
 spec:
   containers:
