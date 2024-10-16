@@ -6,7 +6,7 @@ metadata:
 spec:
   clusterIP: None
   selector:
-    app: stats-mysql
+    app: sts-mysql
   ports:
     - port: 3306
 
@@ -14,17 +14,17 @@ spec:
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: stats-mysql
+  name: sts-mysql
   namespace: default
 spec:
   selector:
     matchLabels:
-      app: stats-mysql
+      app: sts-mysql
   serviceName: "svc-mysql"
   template:
     metadata:
       labels:
-        app: stats-mysql
+        app: sts-mysql
     spec:
       containers:
         - name: c1
