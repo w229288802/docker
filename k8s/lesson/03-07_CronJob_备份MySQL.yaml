@@ -1,0 +1,70 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-mysql
+  namespace: default
+spec:
+  clusterIP: None
+  selector:
+    app: sts-mysql
+  ports:
+    - port: 3306
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: sts-mysql
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: sts-mysql
+  serviceName: "svc-mysql"
+  template:
+    metadata:
+      labels:
+        app: sts-mysql
+    spec:
+      containers:
+        - name: c1
+          image: mysql:5.7
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "123456" #更改密码需求删除volumes文件
+          volumeMounts:
+            - mountPath: "/var/lib/mysql"
+              name: job-mysql-data
+      volumes:
+        - name: job-mysql-data
+          hostPath:
+            path: /opt/job-mysql-data
+
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cronjob-mysql-dump
+  namespace: default
+spec:
+  schedule: "*/1 * * * *" #每分钟执行一次
+  jobTemplate:
+    spec:
+      backoffLimit: 0
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: job-mysql-dump
+              image: mysql:5.7
+              imagePullPolicy: IfNotPresent
+              # ！！！！！！！！等5秒mysql创建成功
+              command: ["/bin/sh", "-c", "sleep 5;mysqldump -uroot -p123456 --host=svc-mysql --databases mysql > /tmp/backup_`date +%Y%m%d%H%M`.sql"]
+              volumeMounts:
+                - mountPath: /tmp
+                  name: job-mysql-dump-data
+          volumes:
+            - name: job-mysql-dump-data
+              hostPath:
+                path: /opt/job-mysql-dump-data

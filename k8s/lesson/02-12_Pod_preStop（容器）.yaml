@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-pre-stop
+  namespace: default
+spec:
+  restartPolicy: Never # Always:总是重启;OnFailure:失败时重启;Never:从不重启
+  containers:
+    - name: c1
+      image: nginx
+      imagePullPolicy: IfNotPresent
+      lifecycle:
+        preStop:
+          # kubectl delete pod demo-pre-stop
+          # pod "demo-pre-stop" deleted 会在这一步等待一定的时间(大概30s-60s左右)才能删除,说明验证成功
+          exec:
+            command: ["/bin/sh", "-c", "sleep 60000000"]

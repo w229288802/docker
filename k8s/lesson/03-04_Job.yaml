@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job
+  namespace: default
+spec:
+  completions: 10                                               # 执行job的次数
+  parallelism: 1                                                # 执行job的并发数
+  backoffLimit: 0                                             # 失败后重试次数
+  template:
+    metadata:
+      name: pi
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: c1
+          image: perl
+          imagePullPolicy: IfNotPresent
+          command: ["perl", "-Mbignum=bpi", "-wle", "print bpi(2000)"]

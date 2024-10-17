@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: svc
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: svc-nginx
+  template:
+     metadata:
+       labels:
+         app: svc-nginx
+     spec:
+       containers:
+       - name: c1
+         image: nginx:1.15-alpine
+         imagePullPolicy: IfNotPresent
+         ports:
+         - containerPort: 80
+
+### kubectl expose deployment deploy-nginx --type=ClusterIP --target-port=80 --port=80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-nginx
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    app: svc-nginx

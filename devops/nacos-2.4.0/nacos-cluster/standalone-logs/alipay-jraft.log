@@ -1,200 +1,124 @@
-2024-10-15 00:02:35,750 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_instance_metadata/log from log index 36 to 36, cost 1 ms.
+2024-10-17 08:22:34,428 INFO SPI service [com.alipay.sofa.jraft.JRaftServiceFactory - com.alipay.sofa.jraft.core.DefaultJRaftServiceFactory] loading.
 
-2024-10-15 00:03:52,143 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_persistent_service_v2/log from log index 36 to 36, cost 0 ms.
+2024-10-17 08:22:34,585 INFO SPI service [com.alipay.sofa.jraft.rpc.RaftRpcFactory - com.alipay.sofa.jraft.rpc.impl.GrpcRaftRpcFactory] loading.
 
-2024-10-15 00:08:14,102 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_service_metadata/log from log index 36 to 36, cost 0 ms.
+2024-10-17 08:22:35,000 INFO SPI service [com.alipay.sofa.jraft.util.JRaftSignalHandler - com.alipay.sofa.jraft.NodeDescribeSignalHandler] loading.
 
-2024-10-15 09:33:06,907 INFO SPI service [com.alipay.sofa.jraft.JRaftServiceFactory - com.alipay.sofa.jraft.core.DefaultJRaftServiceFactory] loading.
+2024-10-17 08:22:35,001 INFO SPI service [com.alipay.sofa.jraft.util.JRaftSignalHandler - com.alipay.sofa.jraft.NodeMetricsSignalHandler] loading.
 
-2024-10-15 09:33:07,093 INFO SPI service [com.alipay.sofa.jraft.rpc.RaftRpcFactory - com.alipay.sofa.jraft.rpc.impl.GrpcRaftRpcFactory] loading.
+2024-10-17 08:22:35,003 INFO SPI service [com.alipay.sofa.jraft.util.JRaftSignalHandler - com.alipay.sofa.jraft.ThreadPoolMetricsSignalHandler] loading.
 
-2024-10-15 09:33:07,282 INFO SPI service [com.alipay.sofa.jraft.util.JRaftSignalHandler - com.alipay.sofa.jraft.NodeDescribeSignalHandler] loading.
+2024-10-17 08:22:35,007 INFO SPI service [com.alipay.sofa.jraft.util.timer.RaftTimerFactory - com.alipay.sofa.jraft.util.timer.DefaultRaftTimerFactory] loading.
 
-2024-10-15 09:33:07,282 INFO SPI service [com.alipay.sofa.jraft.util.JRaftSignalHandler - com.alipay.sofa.jraft.NodeMetricsSignalHandler] loading.
+2024-10-17 08:22:35,010 INFO The number of active nodes increment to 1.
 
-2024-10-15 09:33:07,283 INFO SPI service [com.alipay.sofa.jraft.util.JRaftSignalHandler - com.alipay.sofa.jraft.ThreadPoolMetricsSignalHandler] loading.
+2024-10-17 08:22:36,855 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_persistent_service_v2/log from log index 0 to 38, cost 1 ms.
 
-2024-10-15 09:33:07,285 INFO SPI service [com.alipay.sofa.jraft.util.timer.RaftTimerFactory - com.alipay.sofa.jraft.util.timer.DefaultRaftTimerFactory] loading.
+2024-10-17 08:22:36,865 INFO Starts FSMCaller successfully.
 
-2024-10-15 09:33:07,291 INFO The number of active nodes increment to 1.
-
-2024-10-15 09:33:09,593 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_persistent_service_v2/log from log index 0 to 36, cost 1 ms.
-
-2024-10-15 09:33:09,596 INFO Starts FSMCaller successfully.
-
-2024-10-15 09:33:09,628 INFO Loading snapshot, meta=last_included_index: 35
-last_included_term: 35
+2024-10-17 08:22:36,879 INFO Loading snapshot, meta=last_included_index: 37
+last_included_term: 37
 peers: "dc7745c09b13:7848"
 .
 
-2024-10-15 09:33:09,876 INFO Node <naming_persistent_service_v2/dc7745c09b13:7848> onSnapshotLoadDone, last_included_index: 35
-last_included_term: 35
+2024-10-17 08:22:36,959 INFO Node <naming_persistent_service_v2/dc7745c09b13:7848> onSnapshotLoadDone, last_included_index: 37
+last_included_term: 37
 peers: "dc7745c09b13:7848"
 
 
-2024-10-15 09:33:09,878 INFO Node <naming_persistent_service_v2/dc7745c09b13:7848> target priority value has changed from: 0, to: -1.
+2024-10-17 08:22:36,960 INFO Node <naming_persistent_service_v2/dc7745c09b13:7848> target priority value has changed from: 0, to: -1.
 
-2024-10-15 09:33:09,886 INFO Node <naming_persistent_service_v2/dc7745c09b13:7848> init, term=35, lastLogId=LogId [index=35, term=35], conf=dc7745c09b13:7848, oldConf=.
+2024-10-17 08:22:37,000 INFO Node <naming_persistent_service_v2/dc7745c09b13:7848> init, term=37, lastLogId=LogId [index=37, term=37], conf=dc7745c09b13:7848, oldConf=.
 
-2024-10-15 09:33:09,888 INFO Node <naming_persistent_service_v2/dc7745c09b13:7848> start vote and grant vote self, term=35.
+2024-10-17 08:22:37,004 INFO Node <naming_persistent_service_v2/dc7745c09b13:7848> start vote and grant vote self, term=37.
 
-2024-10-15 09:33:10,527 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_persistent_service_v2/log from log index 36 to 36, cost 1 ms.
+2024-10-17 08:22:37,097 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_persistent_service_v2/log from log index 38 to 38, cost 0 ms.
 
-2024-10-15 09:33:10,742 INFO Save raft meta, path=/home/nacos/data/protocol/raft/naming_persistent_service_v2/meta-data, term=36, votedFor=dc7745c09b13:7848, cost time=853 ms
+2024-10-17 08:22:37,138 INFO Save raft meta, path=/home/nacos/data/protocol/raft/naming_persistent_service_v2/meta-data, term=38, votedFor=dc7745c09b13:7848, cost time=132 ms
 
-2024-10-15 09:33:10,743 INFO Node <naming_persistent_service_v2/dc7745c09b13:7848> become leader of group, term=36, conf=dc7745c09b13:7848, oldConf=.
+2024-10-17 08:22:37,139 INFO Node <naming_persistent_service_v2/dc7745c09b13:7848> become leader of group, term=38, conf=dc7745c09b13:7848, oldConf=.
 
-2024-10-15 09:33:10,745 INFO -Djraft.recyclers.maxCapacityPerThread: 4096.
+2024-10-17 08:22:37,142 INFO -Djraft.recyclers.maxCapacityPerThread: 4096.
 
-2024-10-15 09:33:10,748 WARN RPC server is not started in RaftGroupService.
+2024-10-17 08:22:37,143 WARN RPC server is not started in RaftGroupService.
 
-2024-10-15 09:33:10,749 INFO Start the RaftGroupService successfully.
+2024-10-17 08:22:37,144 INFO Start the RaftGroupService successfully.
 
-2024-10-15 09:33:10,802 INFO The number of active nodes increment to 2.
+2024-10-17 08:22:37,178 INFO The number of active nodes increment to 2.
 
-2024-10-15 09:33:10,945 INFO onLeaderStart: term=36.
+2024-10-17 08:22:37,245 INFO onLeaderStart: term=38.
 
-2024-10-15 09:33:11,733 INFO Creating new channel to: dc7745c09b13:7848.
+2024-10-17 08:22:37,711 INFO Creating new channel to: dc7745c09b13:7848.
 
-2024-10-15 09:33:11,740 INFO The channel dc7745c09b13:7848 is in state: CONNECTING.
+2024-10-17 08:22:37,721 INFO The channel dc7745c09b13:7848 is in state: CONNECTING.
 
-2024-10-15 09:33:12,296 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_instance_metadata/log from log index 0 to 36, cost 1 ms.
+2024-10-17 08:22:37,733 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_instance_metadata/log from log index 0 to 38, cost 1 ms.
 
-2024-10-15 09:33:12,308 INFO Starts FSMCaller successfully.
+2024-10-17 08:22:37,735 INFO Starts FSMCaller successfully.
 
-2024-10-15 09:33:12,346 INFO Loading snapshot, meta=last_included_index: 35
-last_included_term: 35
-peers: "dc7745c09b13:7848"
-.
-
-2024-10-15 09:33:12,402 INFO Node <naming_instance_metadata/dc7745c09b13:7848> onSnapshotLoadDone, last_included_index: 35
-last_included_term: 35
-peers: "dc7745c09b13:7848"
-
-
-2024-10-15 09:33:12,403 INFO Node <naming_instance_metadata/dc7745c09b13:7848> target priority value has changed from: 0, to: -1.
-
-2024-10-15 09:33:12,445 INFO Node <naming_instance_metadata/dc7745c09b13:7848> init, term=35, lastLogId=LogId [index=35, term=35], conf=dc7745c09b13:7848, oldConf=.
-
-2024-10-15 09:33:12,446 INFO Node <naming_instance_metadata/dc7745c09b13:7848> start vote and grant vote self, term=35.
-
-2024-10-15 09:33:12,927 ERROR Fail to connect dc7745c09b13:7848, remoting exception: java.util.concurrent.TimeoutException.
-
-2024-10-15 09:33:12,927 ERROR Fail to connect peer dc7745c09b13:7848 to get leader for group naming_persistent_service_v2.
-
-2024-10-15 09:33:13,684 INFO Save raft meta, path=/home/nacos/data/protocol/raft/naming_instance_metadata/meta-data, term=36, votedFor=dc7745c09b13:7848, cost time=1238 ms
-
-2024-10-15 09:33:13,684 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_instance_metadata/log from log index 36 to 36, cost 0 ms.
-
-2024-10-15 09:33:13,684 INFO Node <naming_instance_metadata/dc7745c09b13:7848> become leader of group, term=36, conf=dc7745c09b13:7848, oldConf=.
-
-2024-10-15 09:33:13,685 WARN RPC server is not started in RaftGroupService.
-
-2024-10-15 09:33:13,685 INFO Start the RaftGroupService successfully.
-
-2024-10-15 09:33:13,696 INFO The number of active nodes increment to 3.
-
-2024-10-15 09:33:13,801 INFO onLeaderStart: term=36.
-
-2024-10-15 09:33:14,945 INFO The channel dc7745c09b13:7848 is in state: READY.
-
-2024-10-15 09:33:14,946 INFO The channel dc7745c09b13:7848 has successfully established.
-
-2024-10-15 09:33:15,077 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_service_metadata/log from log index 0 to 36, cost 1 ms.
-
-2024-10-15 09:33:15,097 INFO Starts FSMCaller successfully.
-
-2024-10-15 09:33:15,110 INFO Loading snapshot, meta=last_included_index: 35
-last_included_term: 35
+2024-10-17 08:22:37,736 INFO Loading snapshot, meta=last_included_index: 37
+last_included_term: 37
 peers: "dc7745c09b13:7848"
 .
 
-2024-10-15 09:33:15,146 INFO Node <naming_service_metadata/dc7745c09b13:7848> onSnapshotLoadDone, last_included_index: 35
-last_included_term: 35
+2024-10-17 08:22:37,738 INFO Node <naming_instance_metadata/dc7745c09b13:7848> onSnapshotLoadDone, last_included_index: 37
+last_included_term: 37
 peers: "dc7745c09b13:7848"
 
 
-2024-10-15 09:33:15,147 INFO Node <naming_service_metadata/dc7745c09b13:7848> target priority value has changed from: 0, to: -1.
+2024-10-17 08:22:37,738 INFO Node <naming_instance_metadata/dc7745c09b13:7848> target priority value has changed from: 0, to: -1.
 
-2024-10-15 09:33:15,148 INFO Node <naming_service_metadata/dc7745c09b13:7848> init, term=35, lastLogId=LogId [index=35, term=35], conf=dc7745c09b13:7848, oldConf=.
+2024-10-17 08:22:37,741 INFO Node <naming_instance_metadata/dc7745c09b13:7848> init, term=37, lastLogId=LogId [index=37, term=37], conf=dc7745c09b13:7848, oldConf=.
 
-2024-10-15 09:33:15,149 INFO Node <naming_service_metadata/dc7745c09b13:7848> start vote and grant vote self, term=35.
+2024-10-17 08:22:37,742 INFO Node <naming_instance_metadata/dc7745c09b13:7848> start vote and grant vote self, term=37.
 
-2024-10-15 09:33:15,843 INFO Save raft meta, path=/home/nacos/data/protocol/raft/naming_service_metadata/meta-data, term=36, votedFor=dc7745c09b13:7848, cost time=693 ms
+2024-10-17 08:22:37,968 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_instance_metadata/log from log index 38 to 38, cost 0 ms.
 
-2024-10-15 09:33:15,843 INFO Node <naming_service_metadata/dc7745c09b13:7848> become leader of group, term=36, conf=dc7745c09b13:7848, oldConf=.
+2024-10-17 08:22:38,001 INFO Save raft meta, path=/home/nacos/data/protocol/raft/naming_instance_metadata/meta-data, term=38, votedFor=dc7745c09b13:7848, cost time=258 ms
 
-2024-10-15 09:33:15,843 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_service_metadata/log from log index 36 to 36, cost 1 ms.
+2024-10-17 08:22:38,001 INFO Node <naming_instance_metadata/dc7745c09b13:7848> become leader of group, term=38, conf=dc7745c09b13:7848, oldConf=.
 
-2024-10-15 09:33:15,844 WARN RPC server is not started in RaftGroupService.
+2024-10-17 08:22:38,002 WARN RPC server is not started in RaftGroupService.
 
-2024-10-15 09:33:15,844 INFO Start the RaftGroupService successfully.
+2024-10-17 08:22:38,002 INFO Start the RaftGroupService successfully.
 
-2024-10-15 09:33:16,019 INFO onLeaderStart: term=36.
+2024-10-17 08:22:38,042 INFO onLeaderStart: term=38.
 
-2024-10-15 09:56:12,487 INFO Deleting snapshot /home/nacos/data/protocol/raft/naming_persistent_service_v2/snapshot/snapshot_36.
+2024-10-17 08:22:38,043 INFO The number of active nodes increment to 3.
 
-2024-10-15 09:56:12,488 INFO Renaming /home/nacos/data/protocol/raft/naming_persistent_service_v2/snapshot/temp to /home/nacos/data/protocol/raft/naming_persistent_service_v2/snapshot/snapshot_36.
+2024-10-17 08:22:38,504 INFO The channel dc7745c09b13:7848 is in state: READY.
 
-2024-10-15 09:56:12,521 INFO Deleting snapshot /home/nacos/data/protocol/raft/naming_persistent_service_v2/snapshot/snapshot_35.
+2024-10-17 08:22:38,505 INFO The channel dc7745c09b13:7848 has successfully established.
 
-2024-10-15 09:56:12,671 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_persistent_service_v2/log from log index 36 to 36, cost 0 ms.
+2024-10-17 08:22:38,570 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_service_metadata/log from log index 0 to 38, cost 0 ms.
 
-2024-10-15 09:58:28,371 INFO Deleting snapshot /home/nacos/data/protocol/raft/naming_instance_metadata/snapshot/snapshot_36.
+2024-10-17 08:22:38,571 INFO Starts FSMCaller successfully.
 
-2024-10-15 09:58:28,371 INFO Renaming /home/nacos/data/protocol/raft/naming_instance_metadata/snapshot/temp to /home/nacos/data/protocol/raft/naming_instance_metadata/snapshot/snapshot_36.
+2024-10-17 08:22:38,582 INFO Loading snapshot, meta=last_included_index: 37
+last_included_term: 37
+peers: "dc7745c09b13:7848"
+.
 
-2024-10-15 09:58:28,554 INFO Deleting snapshot /home/nacos/data/protocol/raft/naming_instance_metadata/snapshot/snapshot_35.
+2024-10-17 08:22:38,584 INFO Node <naming_service_metadata/dc7745c09b13:7848> onSnapshotLoadDone, last_included_index: 37
+last_included_term: 37
+peers: "dc7745c09b13:7848"
 
-2024-10-15 09:58:28,897 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_instance_metadata/log from log index 36 to 36, cost 0 ms.
 
-2024-10-15 10:01:36,657 INFO Deleting snapshot /home/nacos/data/protocol/raft/naming_service_metadata/snapshot/snapshot_36.
+2024-10-17 08:22:38,585 INFO Node <naming_service_metadata/dc7745c09b13:7848> target priority value has changed from: 0, to: -1.
 
-2024-10-15 10:01:36,658 INFO Renaming /home/nacos/data/protocol/raft/naming_service_metadata/snapshot/temp to /home/nacos/data/protocol/raft/naming_service_metadata/snapshot/snapshot_36.
+2024-10-17 08:22:38,586 INFO Node <naming_service_metadata/dc7745c09b13:7848> init, term=37, lastLogId=LogId [index=37, term=37], conf=dc7745c09b13:7848, oldConf=.
 
-2024-10-15 10:01:36,716 INFO Deleting snapshot /home/nacos/data/protocol/raft/naming_service_metadata/snapshot/snapshot_35.
+2024-10-17 08:22:38,588 INFO Node <naming_service_metadata/dc7745c09b13:7848> start vote and grant vote self, term=37.
 
-2024-10-15 10:01:36,950 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_service_metadata/log from log index 36 to 36, cost 0 ms.
+2024-10-17 08:22:38,720 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_service_metadata/log from log index 38 to 38, cost 0 ms.
 
-2024-10-15 10:26:17,212 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_persistent_service_v2/log from log index 36 to 37, cost 0 ms.
+2024-10-17 08:22:38,753 INFO Save raft meta, path=/home/nacos/data/protocol/raft/naming_service_metadata/meta-data, term=38, votedFor=dc7745c09b13:7848, cost time=163 ms
 
-2024-10-15 10:28:33,266 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_instance_metadata/log from log index 36 to 37, cost 2 ms.
+2024-10-17 08:22:38,754 INFO Node <naming_service_metadata/dc7745c09b13:7848> become leader of group, term=38, conf=dc7745c09b13:7848, oldConf=.
 
-2024-10-15 10:31:41,135 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_service_metadata/log from log index 36 to 37, cost 0 ms.
+2024-10-17 08:22:38,754 WARN RPC server is not started in RaftGroupService.
 
-2024-10-15 10:56:17,116 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_persistent_service_v2/log from log index 37 to 37, cost 1 ms.
+2024-10-17 08:22:38,755 INFO Start the RaftGroupService successfully.
 
-2024-10-15 10:58:33,217 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_instance_metadata/log from log index 37 to 37, cost 2 ms.
-
-2024-10-15 11:01:41,203 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_service_metadata/log from log index 37 to 37, cost 2 ms.
-
-2024-10-15 11:26:17,018 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_persistent_service_v2/log from log index 37 to 37, cost 2 ms.
-
-2024-10-15 11:28:32,957 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_instance_metadata/log from log index 37 to 37, cost 0 ms.
-
-2024-10-15 11:31:41,017 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_service_metadata/log from log index 37 to 37, cost 1 ms.
-
-2024-10-15 11:56:16,930 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_persistent_service_v2/log from log index 37 to 37, cost 1 ms.
-
-2024-10-15 11:58:32,888 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_instance_metadata/log from log index 37 to 37, cost 1 ms.
-
-2024-10-15 12:01:40,902 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_service_metadata/log from log index 37 to 37, cost 0 ms.
-
-2024-10-15 12:26:16,857 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_persistent_service_v2/log from log index 37 to 37, cost 1 ms.
-
-2024-10-15 12:28:32,807 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_instance_metadata/log from log index 37 to 37, cost 0 ms.
-
-2024-10-15 12:31:40,819 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_service_metadata/log from log index 37 to 37, cost 0 ms.
-
-2024-10-15 12:56:16,804 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_persistent_service_v2/log from log index 37 to 37, cost 0 ms.
-
-2024-10-15 12:58:32,745 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_instance_metadata/log from log index 37 to 37, cost 0 ms.
-
-2024-10-15 13:01:40,757 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_service_metadata/log from log index 37 to 37, cost 1 ms.
-
-2024-10-15 13:26:16,732 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_persistent_service_v2/log from log index 37 to 37, cost 0 ms.
-
-2024-10-15 13:28:32,674 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_instance_metadata/log from log index 37 to 37, cost 0 ms.
-
-2024-10-15 13:31:40,679 INFO Truncated prefix logs in data path: /home/nacos/data/protocol/raft/naming_service_metadata/log from log index 37 to 37, cost 1 ms.
+2024-10-17 08:22:38,842 INFO onLeaderStart: term=38.
 

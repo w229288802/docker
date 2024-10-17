@@ -1,42 +1,28 @@
-2024-10-15 09:33:06,797 INFO Initializes the Raft protocol, raft-config info : {"data":{},"members":["dc7745c09b13:7848"],"selfMember":"dc7745c09b13:7848"}
+2024-10-17 08:22:34,329 INFO Initializes the Raft protocol, raft-config info : {"data":{},"members":["dc7745c09b13:7848"],"selfMember":"dc7745c09b13:7848"}
 
-2024-10-15 09:33:07,197 INFO ========= The raft protocol is starting... =========
+2024-10-17 08:22:34,647 INFO ========= The raft protocol is starting... =========
 
-2024-10-15 09:33:07,224 INFO ========= The raft protocol start finished... =========
+2024-10-17 08:22:34,779 INFO ========= The raft protocol start finished... =========
 
-2024-10-15 09:33:07,238 INFO create raft group : naming_persistent_service_v2
+2024-10-17 08:22:34,790 INFO create raft group : naming_persistent_service_v2
 
-2024-10-15 09:33:09,804 INFO snapshot start to load from : /home/nacos/data/protocol/raft/naming_persistent_service_v2/snapshot/snapshot_35
+2024-10-17 08:22:36,928 INFO snapshot start to load from : /home/nacos/data/protocol/raft/naming_persistent_service_v2/snapshot/snapshot_37
 
-2024-10-15 09:33:09,872 INFO snapshot success to load from : /home/nacos/data/protocol/raft/naming_persistent_service_v2/snapshot/snapshot_35
+2024-10-17 08:22:36,955 INFO snapshot success to load from : /home/nacos/data/protocol/raft/naming_persistent_service_v2/snapshot/snapshot_37
 
-2024-10-15 09:33:09,874 INFO This Raft event changes : RaftEvent{groupId='naming_persistent_service_v2', leader='null', term=null, raftClusterInfo=[dc7745c09b13:7848]}
+2024-10-17 08:22:36,957 INFO This Raft event changes : RaftEvent{groupId='naming_persistent_service_v2', leader='null', term=null, raftClusterInfo=[dc7745c09b13:7848]}
 
-2024-10-15 09:33:10,801 INFO create raft group : naming_instance_metadata
+2024-10-17 08:22:37,177 INFO create raft group : naming_instance_metadata
 
-2024-10-15 09:33:10,945 INFO This Raft event changes : RaftEvent{groupId='naming_persistent_service_v2', leader='dc7745c09b13:7848', term=36, raftClusterInfo=[dc7745c09b13:7848]}
+2024-10-17 08:22:37,245 INFO This Raft event changes : RaftEvent{groupId='naming_persistent_service_v2', leader='dc7745c09b13:7848', term=38, raftClusterInfo=[dc7745c09b13:7848]}
 
-2024-10-15 09:33:12,402 INFO This Raft event changes : RaftEvent{groupId='naming_instance_metadata', leader='null', term=null, raftClusterInfo=[dc7745c09b13:7848]}
+2024-10-17 08:22:37,737 INFO This Raft event changes : RaftEvent{groupId='naming_instance_metadata', leader='null', term=null, raftClusterInfo=[dc7745c09b13:7848]}
 
-2024-10-15 09:33:13,363 ERROR Failed to join the cluster, retry...
+2024-10-17 08:22:38,042 INFO create raft group : naming_service_metadata
 
-java.lang.IllegalStateException: Fail to get leader of group naming_persistent_service_v2
-	at com.alipay.sofa.jraft.core.CliServiceImpl.getPeers(CliServiceImpl.java:605)
-	at com.alipay.sofa.jraft.core.CliServiceImpl.getPeers(CliServiceImpl.java:498)
-	at com.alibaba.nacos.core.distributed.raft.JRaftServer.registerSelfToCluster(JRaftServer.java:353)
-	at com.alibaba.nacos.core.distributed.raft.JRaftServer.lambda$createMultiRaftGroup$0(JRaftServer.java:264)
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
-	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at java.lang.Thread.run(Thread.java:750)
-2024-10-15 09:33:13,695 INFO create raft group : naming_service_metadata
+2024-10-17 08:22:38,043 INFO This Raft event changes : RaftEvent{groupId='naming_instance_metadata', leader='dc7745c09b13:7848', term=38, raftClusterInfo=[dc7745c09b13:7848]}
 
-2024-10-15 09:33:13,801 INFO This Raft event changes : RaftEvent{groupId='naming_instance_metadata', leader='dc7745c09b13:7848', term=36, raftClusterInfo=[dc7745c09b13:7848]}
+2024-10-17 08:22:38,584 INFO This Raft event changes : RaftEvent{groupId='naming_service_metadata', leader='null', term=null, raftClusterInfo=[dc7745c09b13:7848]}
 
-2024-10-15 09:33:15,146 INFO This Raft event changes : RaftEvent{groupId='naming_service_metadata', leader='null', term=null, raftClusterInfo=[dc7745c09b13:7848]}
-
-2024-10-15 09:33:16,019 INFO This Raft event changes : RaftEvent{groupId='naming_service_metadata', leader='dc7745c09b13:7848', term=36, raftClusterInfo=[dc7745c09b13:7848]}
+2024-10-17 08:22:38,843 INFO This Raft event changes : RaftEvent{groupId='naming_service_metadata', leader='dc7745c09b13:7848', term=38, raftClusterInfo=[dc7745c09b13:7848]}
 
