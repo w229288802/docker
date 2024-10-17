@@ -32,3 +32,5 @@ CommandLine flags: -XX:+CMSClassUnloadingEnabled -XX:CMSInitiatingOccupancyFract
 2024-10-17T00:22:34.006+0000: 35.939: [CMS-concurrent-reset: 0.001/0.001 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
 2024-10-17T00:22:36.969+0000: 38.902: [GC (Allocation Failure) 2024-10-17T00:22:36.969+0000: 38.903: [ParNew: 463951K->52416K(471872K), 0.0291640 secs] 463951K->63909K(996160K), 0.0297548 secs] [Times: user=0.18 sys=0.01, real=0.03 secs] 
 2024-10-17T00:22:40.182+0000: 42.115: [GC (Allocation Failure) 2024-10-17T00:22:40.182+0000: 42.115: [ParNew: 471872K->48551K(471872K), 0.0237329 secs] 483365K->82767K(996160K), 0.0243810 secs] [Times: user=0.15 sys=0.00, real=0.03 secs] 
+2024-10-17T01:11:26.408+0000: 2968.464: [GC (Allocation Failure) 2024-10-17T01:11:26.412+0000: 2968.468: [ParNew: 468007K->34389K(471872K), 0.1038431 secs] 502223K->82645K(996160K), 0.1081669 secs] [Times: user=1.40 sys=0.01, real=0.11 secs] 
+2024-10-17T03:40:36.622+0000: 11919.083: [GC (Allocation Failure) 2024-10-17T03:40:36.623+0000: 11919.084: [ParNew: 453845K->29649K(471872K), 0.0533520 secs] 502101K->77905K(996160K), 0.0544698 secs] [Times: user=0.71 sys=0.00, real=0.06 secs] 
