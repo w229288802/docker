@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deploy
+  name: dm
   namespace: default
 spec:
   # 副本扩容
@@ -9,11 +9,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: dm-nginx
+      app: dm
   template:
     metadata:
       labels:
-        app: dm-nginx
+        app: dm
     spec:
       containers:
         - name: c1
@@ -26,7 +26,7 @@ spec:
           # kubectl rollout history deployment deploy-nginx
           # kubectl rollout history deployment deploy-nginx --revision=1
           # kubectl rollout undo deployment deploy-nginx --to-revision=1
-          image: nginx
+          image: nginx:1.15-alpine
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80

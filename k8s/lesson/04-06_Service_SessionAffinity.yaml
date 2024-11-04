@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-server1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: c1
+          image: nginx:1.15-alpine
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-svc
+spec:
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  selector:
+    app: nginx
+  sessionAffinity: ClientIP
+#设置sessionAffinity为Clientip  (类似nginx的ip_hash算法,lvs的sh算法)
+#kubectl patch svc nginx-svc -p '{"spec":{"sessionAffinity":"ClientIP"}}'

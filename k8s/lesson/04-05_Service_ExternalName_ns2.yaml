@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ns2                                                     # 创建ns2命名空间
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ext-nginx
+  namespace: ns2                                                # 属于ns2命名空间
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ext-nginx
+  template:
+    metadata:
+      labels:
+        app: ext-nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.15-alpine
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ext-nginx                                # 服务名
+  namespace: ns2                            # 属于ns2命名空间
+spec:
+  selector:
+    app: ext-nginx
+  clusterIP: None                           # 无头service
+  ports:
+    - port: 80
+      targetPort: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: ext-externalname
+  namespace: ns2                            #  属于ns2命名空间
+spec:
+  type: ExternalName
+  externalName: ext-nginx.ns1.svc.cluster.local   # 将ns1空间的ext-nginx服务引入到ns2命名空间
+#kubectl exec -it -n ns2 deploy-nginx-6c9764bb69-g5xl8 -- /bin/sh
+#nslookup ext-nginx
+#nslookup ext-nginx.ns1.svc.cluster.local
