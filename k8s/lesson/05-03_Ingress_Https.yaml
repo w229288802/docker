@@ -1,0 +1,80 @@
+# Ingress Controller 控制器
+# 需要提前安装MetalLB
+# wget https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.1/deploy/static/provider/cloud/deploy.yaml
+# kubectl exec -it nginx-646d5c7b67-mpw9r -n ingress-nginx  -- /bin/sh -c 'echo "ingress web1" > /usr/share/nginx/html/index.html'
+# kubectl exec -it nginx-646d5c7b67-mpw9r -n ingress-nginx  -- /bin/sh -c 'echo "ingress web2" > /usr/share/nginx/html/index.html'
+
+#！！！！！！！！！！！！注意要配置域名才能访问，不然404, /etc/hosts 192.168.137.90 www.kubemsb.com
+
+#[root@k8s-master1 ~]# mkdir ingress-https
+#[root@k8s-master1 ~]# cd ingress-https/
+#[root@k8s-master1 ingress-https]# openssl genrsa -out nginx.key 2048
+#[root@k8s-master1 ingress-https]# openssl req -new -x509 -key nginx.key -out nginx.pem -days 365
+
+#kubectl get pods -o jsonpath='{.items[*].metadata.name}' -l app=ing-nginx-https -n ingress-nginx | tr ' ' '\n' | \
+#  xargs -I {} kubectl exec {} -n ingress-nginx  -- /bin/sh -c 'echo "<h1>{}<h1>" > /usr/share/nginx/html/index.html;sleep 1'
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ing-nginx-https
+  namespace: ingress-nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ing-nginx-https
+  template:
+    metadata:
+      labels:
+        app: ing-nginx-https
+    spec:
+      containers:
+        - name: c1
+          image: nginx:1.15-alpine
+          imagePullPolicy: IfNotPresent
+
+--- # Service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: ing-nginx-https
+  namespace: ingress-nginx
+  labels:
+    app: ing-nginx-https
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+    - name: https
+      port: 443
+      targetPort: 443
+  selector:
+    app: ing-nginx-https
+
+--- #Ingress
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ing-nginx-https                    #自定义ingress名称
+  namespace: ingress-nginx
+  annotations:
+    ingressclass.kubernetes.io/is-default-class: "true"
+    kubernetes.io/ingress.class: nginx
+spec:
+  tls:
+    - secretName: nginx-tls-secret
+  rules:
+    - host: www.kubemsb3.com                   # 自定义域名
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: ing-nginx-https     # 对应上面创建的service名称
+                port:
+                  number: 80
