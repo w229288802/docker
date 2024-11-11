@@ -1,0 +1,61 @@
+#yum -y install rpcbind nfs-utils
+#
+#[root@nfsserver ~]# mkdir -p /data/nfs
+#[root@nfsserver ~]# vim /etc/exports
+#/data/nfs       *(rw,no_root_squash,sync)
+##这行代码的意思是把共享目录/data/share/共享给所有ip，后面括号里的内容是权限参数，其中：
+##rw 表示设置目录可读写。
+##sync 表示数据会同步写入到内存和硬盘中，相反 rsync 表示数据会先暂存于内存中，而非直接写入到硬盘中。
+##no_root_squash NFS客户端连接服务端时如果使用的是root的话，那么对服务端分享的目录来说，也拥有root权限。
+#
+#no_all_squash 不论NFS客户端连接服务端时使用什么用户，对服务端分享的目录来说都不会拥有匿名用户权限。
+#[root@nfsserver ~]# systemctl start rpcbind && systemctl enable rpcbind
+#[root@nfsserver ~]# systemctl start nfs && systemctl enable nfs
+
+#所有节点[root@k8s-worker1 ~]# yum install nfs-utils -y
+#所有节点[root@k8s-worker1 ~]# showmount -e 192.168.137.106
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vol-nfs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vol-nfs
+  template:
+    metadata:
+      name: vol-nfs
+      labels:
+        app: vol-nfs
+    spec:
+      containers:
+        - name: vol-nfs
+          image: nginx:1.15-alpine
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: vol-nfs
+              mountPath: /usr/share/nginx/html
+              subPath: vol-nfs
+      volumes:
+        - name: vol-nfs
+          nfs:
+            server: 192.168.137.106
+            path: /data/nfs
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: vol-nfs
+spec:
+  type: NodePort
+  selector:
+    app: vol-nfs
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30004

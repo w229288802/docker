@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: vol-pv
+spec:
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteMany
+#    - ReadWriteOnce 单节点读写挂载
+#    - ReadOnlyMany  多节点只读挂载
+#    - ReadWriteMany  多节点读写挂载
+  nfs:
+    path: /data/nfs
+    server: 192.168.137.106
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: vol-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vol-pv
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: vol-pv
+  template:
+    metadata:
+      labels:
+        app: vol-pv
+    spec:
+      containers:
+        - name: vol-pv1
+          image: nginx
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: /usr/share/nginx/html
+              name: vol-pvc
+              subPath: vol-pv-html
+        - name: vol-pv2
+          image: nginx
+          imagePullPolicy: IfNotPresent
+          command: ["sh","-c","echo haha > /data/1.txt ; sleep 6000"]
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: /data
+              name: vol-pvc
+              subPath: vol-pv-data
+      volumes:
+        - name: vol-pvc
+          persistentVolumeClaim:
+            claimName: vol-pvc
+
