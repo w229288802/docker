@@ -8,13 +8,14 @@ services:
     volumes:
       - ./standalone-logs/:/home/nacos/logs
       - ./init.d/application.properties:/home/nacos/conf/application.properties
+      - "/usr/share/zoneinfo/Asia/Shanghai:/etc/localtime"        #设置系统时区
+      - "/usr/share/zoneinfo/Asia/Shanghai:/etc/timezone"
     ports:
       - "8848:8848"
       - "9848:9848"
     depends_on:
       mysql:
         condition: service_healthy
-
     restart: on-failure
   mysql:
     container_name: mysql-nacos
@@ -26,9 +27,12 @@ services:
       - ../env/mysql.env
     volumes:
       - ./mysql:/var/lib/mysql
+      - "/usr/share/zoneinfo/Asia/Shanghai:/etc/localtime"        #设置系统时区
+      - "/usr/share/zoneinfo/Asia/Shanghai:/etc/timezone"  #设置时区
     healthcheck:
       test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
       interval: 5s
       timeout: 10s
       retries: 10
+    restart: always
 

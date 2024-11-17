@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:5.7
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - "/usr/share/zoneinfo/Asia/Shanghai:/etc/localtime"        #设置系统时区
+      - "/usr/share/zoneinfo/Asia/Shanghai:/etc/timezone"  #设置时区
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    ports:
+      - "3306:3306"
+    privileged: true
+    restart: always
+volumes:
+  mysql-data: {}

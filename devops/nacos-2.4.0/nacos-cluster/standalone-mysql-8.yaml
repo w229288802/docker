@@ -24,6 +24,8 @@ services:
       - ../env/mysql.env
     volumes:
       - ./mysql:/var/lib/mysql
+      - "/usr/share/zoneinfo/Asia/Shanghai:/etc/localtime"        #设置系统时区
+      - "/usr/share/zoneinfo/Asia/Shanghai:/etc/timezone"
     ports:
       - "3306:3306"
     healthcheck:
