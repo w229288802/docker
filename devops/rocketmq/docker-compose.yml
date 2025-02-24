@@ -1,0 +1,11 @@
+version: '3'
+services:
+  rocketmq-dashboard:
+    image: apacherocketmq/rocketmq-dashboard:latest
+    container_name: rocketmq-dashboard
+    ports:
+      - "8080:8080"
+    environment:
+      JAVA_OPTS: "-Drocketmq.namesrv.addr=host.docker.internal:9876"
+  rocketmq:
+    image: apache/rocketmq:4.6.0
