@@ -1,0 +1,12 @@
+**/src
+**/classes
+**/generated-sources
+**/maven-archiver
+**/maven-status
+**/*.iml
+**/*.original
+**/pom.xml
+**/.gitignore
+**/*.md
+**/*.odf
+document
